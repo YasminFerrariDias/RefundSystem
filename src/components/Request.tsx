@@ -1,4 +1,4 @@
-export function RequestsPanel() {
+export function Request() {
   return (
     <div className="flex items-center gap-3 p-0 w-full">
       <div className="bg-gray-400 w-8.5 h-8.5 rounded-full">
