@@ -1,3 +1,5 @@
+import { Text } from "./Text/Text";
+
 export function Request() {
   return (
     <div className="flex items-center gap-3 p-0 w-full">
@@ -6,12 +8,12 @@ export function Request() {
       </div>
       <div className="flex justify-between w-full">
         <div className="flex flex-col">
-          <div className="text-sm font-bold">Rodrigo</div>
-          <div className="text-xs text-gray-700">Alimentação</div>
+          <Text className="text-sm font-bold">Rodrigo</Text>
+          <Text className="text-xs text-gray-700">Alimentação</Text>
         </div>
         <div className="flex items-center">
-          <p>R$</p>
-          <p>25,89</p>
+          <Text>R$</Text>
+          <Text>25,89</Text>
         </div>
       </div>
     </div>
