@@ -1,9 +1,9 @@
-import { CardContainer } from "./components/CardContainer";
+import { CardContainer } from "./components/CardContainer/CardContainer";
 
 export function App() {
   return (
     <div className="bg-gray-400 flex w-auto h-screen">
-      <CardContainer />
+      <CardContainer size="lg" />
     </div>
   )
 }
