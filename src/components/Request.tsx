@@ -8,12 +8,12 @@ export function Request() {
       </div>
       <div className="flex justify-between w-full">
         <div className="flex flex-col">
-          <Text className="text-sm font-bold">Rodrigo</Text>
-          <Text className="text-xs text-gray-700">Alimentação</Text>
+          <Text size="md" textColor="gray100" decoration="bold">Rodrigo</Text>
+          <Text size="sm" textColor="gray200">Alimentação</Text>
         </div>
-        <div className="flex items-center">
-          <Text>R$</Text>
-          <Text>25,89</Text>
+        <div className="flex gap-1 items-end">
+          <Text size="smLine" textColor="gray200" decoration="bodySm" className="pb-0.5">R$</Text>
+          <Text size="lgLine" textColor="gray100" decoration="semibold">25,89</Text>
         </div>
       </div>
     </div>
