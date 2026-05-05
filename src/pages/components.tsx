@@ -2,6 +2,7 @@ import { ButtonContainer } from "../components/Button/ButtonContainer/ButtonCont
 import { IconButton } from "../components/Button/IconButton/IconButton";
 import { CardContainer } from "../components/CardContainer/CardContainer";
 import { Input } from "../components/Input";
+import { NavLink } from "../components/NavLink";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 
@@ -23,6 +24,11 @@ export function Components() {
         <div className="flex gap-2">
           <Input placeholder="Text Maior" />
           <Input placeholder="Menor" className="w-20!" />
+        </div>
+        <div className="flex gap-2">
+          <NavLink text="Google" link="https://www.google.com/?hl=pt_br" disabled />
+          <NavLink text="Google" link="https://www.google.com/?hl=pt_br" isActive={true} />
+          <NavLink text="Google" link="https://www.google.com/?hl=pt_br" isActive={false} />
         </div>
       </CardContainer>
     </div>
