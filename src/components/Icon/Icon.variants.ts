@@ -3,9 +3,9 @@ import { tv } from "tailwind-variants"
 export const iconVariant = tv({
   variants: {
     size: {
-      sm: "w-[18] h-[18]",
-      md: "w-[24] h-[24]",
-      lg: "w-[110] h-[110]",
+      sm: "w-[18px] h-[18px]",
+      md: "w-[24px] h-[24px]",
+      lg: "w-[110px] h-[110px]",
     },
     iconColor: {
       white: "text-white",
