@@ -8,11 +8,11 @@ interface ButtonContainerProps
   as?: keyof React.JSX.IntrinsicElements
 }
 
-export function Button({ as = "button", size, buttonColor, children, className, ...props }: ButtonContainerProps) {
+export function ButtonContainer({ as = "button", size, buttonColor, textColor, children, className, ...props }: ButtonContainerProps) {
   return React.createElement(
     as,
     {
-      className: buttonContainerVariant({ size, buttonColor, className }),
+      className: buttonContainerVariant({ size, buttonColor, textColor, className }),
       ...props
     },
     children
