@@ -5,6 +5,7 @@ import { Input } from "../components/Input";
 import { NavLink } from "../components/NavLink";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
+import { Select } from "../components/Select/Select";
 
 export function Components() {
   return (
@@ -23,12 +24,16 @@ export function Components() {
         </div>
         <div className="flex gap-2">
           <Input placeholder="Text Maior" title="TÍTULO" />
-          <Input placeholder="Menor" className="w-20!" title="TEXT" />
+          <Input placeholder="Menor" className="w-20!" title="TEXT " />
         </div>
         <div className="flex gap-2">
           <NavLink text="Google" link="https://www.google.com/?hl=pt_br" disabled />
           <NavLink text="Google" link="https://www.google.com/?hl=pt_br" isActive={true} />
           <NavLink text="Google" link="https://www.google.com/?hl=pt_br" isActive={false} />
+        </div>
+
+        <div>
+          <Select />
         </div>
       </CardContainer>
     </div>
