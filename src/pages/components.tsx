@@ -33,7 +33,7 @@ export function Components() {
         </div>
 
         <div>
-          <Select />
+          <Select title="CATEGORIA" />
         </div>
       </CardContainer>
     </div>

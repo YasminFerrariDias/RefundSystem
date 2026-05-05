@@ -2,7 +2,12 @@ import { useState } from "react";
 import { useToggle } from "./hooks/useToggle";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-export function Select() {
+interface SelectProps {
+  title: string
+  disabled?: boolean
+}
+
+export function Select({title, disabled = false }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
   const [optionSelect, setOptionSelect] = useState("Selecione")
 
@@ -12,19 +17,36 @@ export function Select() {
   }
 
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor="">CATEGORIA</label>
+    <div className="flex flex-col gap-1 relative group">
+      <label className={`
+        text-sm transition-colors duration-200
+        group-focus-within:text-green-100  text-[10px]
+        ${disabled ? 'text-gray-300' : 'text-gray-200'}
+        ${isOpen ? 'text-green-100' : ''}
+      `}>
+        {title}
+      </label>
+
       <div
-        className="bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-row justify-between"
-        onClick={toggle}
+        className={`
+          bg-white border rounded-lg p-3 gap-2 flex flex-row justify-between
+          transition-all duration-200
+          border-gray-300
+          focus:outline-none focus:border-green-100 focus:ring-1 focus:ring-green-100
+          ${isOpen ? 'border-green-100 ring-1 ring-green-100' : ''}
+          ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+        `}
+        onClick={disabled ? undefined : toggle}
+        tabIndex={disabled ? -1 : 0}  
       >
         <span>{optionSelect}</span>
         <span className="flex items-center">{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </div>
+
       <div
         className={`
-          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100
-          ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'}         
+          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100 absolute top-full left-0 right-0 mt-1
+          ${isOpen ? 'visible' : 'hidden'}         
         `}
       >
         <div
