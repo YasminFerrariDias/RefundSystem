@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants";
 
 export const cardContainerVariant = tv({
   base: `
-    m-auto rounded-2xl shadow-lg flex items-center justify-center bg-white p-[40px]
+    rounded-2xl shadow-lg flex flex-col bg-white p-[40px]
   `,
   variants: {
     size: {

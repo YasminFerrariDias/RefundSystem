@@ -11,10 +11,6 @@ export const buttonContainerVariant = tv({
       transparent: "bg-transparent",
       green100: "bg-green-100 disabled:opacity-50 transition duration-300 enabled:hover:bg-green-200",
     },
-    textColor: {
-      white: "text-white",
-      green100: "text-green-100",
-    },
   },
   defaultVariants: {
     size: "fit",
