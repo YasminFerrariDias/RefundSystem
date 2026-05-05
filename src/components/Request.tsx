@@ -1,3 +1,4 @@
+import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
 import { PiForkKnifeFill } from "react-icons/pi";
 
@@ -5,7 +6,7 @@ export function Request() {
   return (
     <div className="flex items-center gap-3 p-0 w-full">
       <div className="bg-gray-400 w-8.5 h-8.5 rounded-full justify-center items-center flex ">
-        <PiForkKnifeFill size={18} className="fill-green-100" />
+        <Icon icon={PiForkKnifeFill} size="sm" iconColor="green100" />
       </div>
       <div className="flex justify-between w-full">
         <div className="flex flex-col">
