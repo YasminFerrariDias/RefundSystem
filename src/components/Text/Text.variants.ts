@@ -12,10 +12,10 @@ export const textVariant = tv({
       lgLine: "text-[20px] leading-[24px]",
     },
     textColor: {
+      white: "text-white",
       gray100: "text-gray-100",
       gray200: "text-gray-200",
       green100: "text-green-100",
-      white: "text-white",
     },
     decoration: {
       regular: "font-normal",
