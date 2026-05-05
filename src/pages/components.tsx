@@ -22,8 +22,8 @@ export function Components() {
           <IconButton icon={CiSearch} iconColor="white" disabled />
         </div>
         <div className="flex gap-2">
-          <Input placeholder="Text Maior" />
-          <Input placeholder="Menor" className="w-20!" />
+          <Input placeholder="Text Maior" title="TÍTULO" />
+          <Input placeholder="Menor" className="w-20!" title="TEXT" />
         </div>
         <div className="flex gap-2">
           <NavLink text="Google" link="https://www.google.com/?hl=pt_br" disabled />
