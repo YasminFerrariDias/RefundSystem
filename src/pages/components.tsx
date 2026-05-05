@@ -1,7 +1,7 @@
 import { ButtonContainer } from "../components/Button/ButtonContainer/ButtonContainer";
 import { IconButton } from "../components/Button/IconButton/IconButton";
 import { CardContainer } from "../components/CardContainer/CardContainer";
-import { Input } from "../components/Input/Input";
+import { Input } from "../components/Input";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 
