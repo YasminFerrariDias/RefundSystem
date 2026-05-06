@@ -22,6 +22,7 @@ export function InputPDF() {
           }
         }}
       />
+      <Text size="xs" textColor="gray200">COMPROVANTE</Text>
       <div
         className={`
           w-full h-12 relative group bg-white border border-gray-300 rounded-lg overflow-hidden

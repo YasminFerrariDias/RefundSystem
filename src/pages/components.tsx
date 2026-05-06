@@ -7,6 +7,7 @@ import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 import { Select } from "../components/Select/Select";
 import { InputPDF } from "../components/Input/InputPDF";
+import { PreviewPDF } from "../components/Input/previewPDF";
 
 export function Components() {
   return (
@@ -39,6 +40,10 @@ export function Components() {
 
         <div>
           <InputPDF />
+        </div>
+
+        <div>
+          <PreviewPDF />
         </div>
       </CardContainer>
     </div>
