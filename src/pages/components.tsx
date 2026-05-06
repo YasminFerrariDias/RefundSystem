@@ -1,11 +1,12 @@
 import { ButtonContainer } from "../components/Button/ButtonContainer/ButtonContainer";
 import { IconButton } from "../components/Button/IconButton/IconButton";
 import { CardContainer } from "../components/CardContainer/CardContainer";
-import { Input } from "../components/Input";
+import { Input } from "../components/Input/Input";
 import { NavLink } from "../components/NavLink";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 import { Select } from "../components/Select/Select";
+import { InputPDF } from "../components/Input/InputPDF";
 
 export function Components() {
   return (
@@ -34,6 +35,10 @@ export function Components() {
 
         <div>
           <Select title="CATEGORIA" />
+        </div>
+
+        <div>
+          <InputPDF />
         </div>
       </CardContainer>
     </div>
