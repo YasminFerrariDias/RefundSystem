@@ -44,7 +44,7 @@ export function Select({title, disabled = false }: SelectProps) {
 
       <div
         className={`
-          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100 absolute top-full left-0 right-0 mt-1
+          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100 absolute top-full left-0 right-0 mt-1 z-1
           ${isOpen ? 'visible' : 'hidden'}         
         `}
       >

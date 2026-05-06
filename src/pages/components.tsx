@@ -1,13 +1,13 @@
 import { ButtonContainer } from "../components/Button/ButtonContainer/ButtonContainer";
 import { IconButton } from "../components/Button/IconButton/IconButton";
 import { CardContainer } from "../components/CardContainer/CardContainer";
-import { Input } from "../components/Input/Input";
+import { Input } from "../components/Input";
 import { NavLink } from "../components/NavLink";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 import { Select } from "../components/Select/Select";
-import { InputPDF } from "../components/Input/InputPDF";
-import { PreviewPDF } from "../components/Input/previewPDF";
+import { InputPDF } from "../components/PDFComponents/InputPDF";
+import { PreviewPDF } from "../components/PDFComponents/previewPDF";
 
 export function Components() {
   return (
