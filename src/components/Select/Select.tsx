@@ -26,7 +26,6 @@ export function Select({title, disabled = false }: SelectProps) {
       `}>
         {title}
       </label>
-
       <div
         className={`
           bg-white border rounded-lg p-3 gap-2 flex flex-row justify-between
@@ -53,7 +52,7 @@ export function Select({title, disabled = false }: SelectProps) {
           className={`
               p-1 cursor-pointer rounded 
               ${optionSelect === 'Alimentação'
-              ? 'font-bold'
+              ? 'font-semibold'
               : 'font-normal'
             }`
           }
@@ -64,8 +63,9 @@ export function Select({title, disabled = false }: SelectProps) {
         <div
           className={`
               p-1 cursor-pointer rounded 
+              text-gray-100
               ${optionSelect === 'Hospedagem'
-              ? 'font-bold'
+              ? 'font-semibold'
               : 'font-normal'
             }`
           }
@@ -77,7 +77,7 @@ export function Select({title, disabled = false }: SelectProps) {
           className={`
               p-1 cursor-pointer rounded 
               ${optionSelect === 'Transporte'
-              ? 'font-bold'
+              ? 'font-semibold'
               : 'font-normal'
             }`
           }
@@ -89,7 +89,7 @@ export function Select({title, disabled = false }: SelectProps) {
           className={`
               p-1 cursor-pointer rounded 
               ${optionSelect === 'Serviços'
-              ? 'font-bold'
+              ? 'font-semibold'
               : 'font-normal'
             }`
           }
@@ -101,7 +101,7 @@ export function Select({title, disabled = false }: SelectProps) {
           className={`
               p-1 cursor-pointer rounded 
               ${optionSelect === 'Outros'
-              ? 'font-bold'
+              ? 'font-semibold'
               : 'font-normal'
             }`
           }
