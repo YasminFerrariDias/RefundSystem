@@ -1,7 +1,7 @@
 interface ComponentsProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string
-  title: string
+  title?: string
 }
 
 export function Input({ placeholder, title, className, ...props }: ComponentsProps) {
@@ -19,7 +19,7 @@ export function Input({ placeholder, title, className, ...props }: ComponentsPro
         className={`
           ${className} 
           h-12 w-full rounded-lg p-4
-          border-gray-300 border 
+          border-gray-300 border
           text-gray-100 placeholder:text-gray-200
           focus:border-green-100 focus:outline-none 
           focus:border-[1.5px] caret-green-100 

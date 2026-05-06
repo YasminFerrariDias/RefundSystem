@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const iconButtonVariant = tv({
-  base: "inline-flex p-3 rounded-lg items-center justify-center",
+  base: "inline-flex p-3 rounded-lg items-center justify-center m-0 mt-1",
   variants: {
     buttonColor: {
       transparent: "bg-transparent",
