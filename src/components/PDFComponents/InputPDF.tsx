@@ -14,7 +14,7 @@ export function InputPDF() {
 
   return (
     <div>
-      <input type="file" ref={fileInputRef} className="hidden" accept=".pdf" 
+      <input type="file" ref={fileInputRef} className="hidden" accept=".pdf, .jpg, .png" 
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) {
