@@ -3,6 +3,7 @@ import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
+import { RefundCatalog } from "../../Features/RefundCatalog";
 
 export function Home() {
   return (
@@ -20,7 +21,7 @@ export function Home() {
         </div>
         <hr className="text-gray-400" />
         <div>
-          
+          <RefundCatalog />
         </div>
       </div>
     </CardContainer>

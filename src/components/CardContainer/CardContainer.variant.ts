@@ -9,7 +9,7 @@ export const cardContainerVariant = tv({
       sm: "w-[512px] h-[224px] overflow-y-auto",
       md: "w-[512px] h-[388px] overflow-y-auto",
       lg: "w-[512px] h-[504px] overflow-y-auto",
-      xl: "inset-0 absolute ml-20 mr-20 mb-20 mt-35"
+      xl: "inset-0 absolute ml-50 mr-50 mb-30 mt-35"
     }
   },
   defaultVariants: {
