@@ -1,9 +1,11 @@
 import { FiUploadCloud } from "react-icons/fi";
 import { IconButton } from "../Button/IconButton/IconButton";
 import { Text } from "../Text/Text";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export function InputPDF() {
+  const [ nameFile, setNameFile] = useState("Nome do arquivo.pdf")
+
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const openFileSelector = () => {
@@ -12,13 +14,20 @@ export function InputPDF() {
 
   return (
     <>
-      <input type="file" ref={fileInputRef} className="hidden" />
+      <input type="file" ref={fileInputRef} className="hidden" accept=".pdf" 
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) {
+            setNameFile(file.name)
+          }
+        }}
+      />
       <div
         className={`
           w-full h-12 relative group bg-white border border-gray-300 rounded-lg overflow-hidden
         `}>
         <div className="w-full h-12 flex items-center justify-between pl-4">
-          <Text className="text-gray-100">Nome do arquivo.pdf</Text>
+          <Text className="text-gray-100" size="mdLine" textColor="gray200">{nameFile}</Text>
           <IconButton
             icon={FiUploadCloud}
             iconColor="white"
