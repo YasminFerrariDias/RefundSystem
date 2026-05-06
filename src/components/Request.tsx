@@ -1,19 +1,20 @@
+import type { IconType } from "react-icons";
 import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
-import { PiForkKnifeFill } from "react-icons/pi";
 
 interface RequestProps {
   id: number;
   name: string;
   category: string;
+  icon: IconType
   amount: number
 }
 
-export function Request({ id, name, category, amount }: RequestProps) {
+export function Request({ id, name, category, icon, amount }: RequestProps) {
   return (
     <div className="flex items-center gap-3 p-0 w-full" key={id}>
       <div className="bg-gray-400 w-8.5 h-8.5 rounded-full justify-center items-center flex ">
-        <Icon icon={PiForkKnifeFill} size="sm" iconColor="green100" />
+        <Icon icon={icon} size="sm" iconColor="green100" />
       </div>
       <div className="flex justify-between w-full">
         <div className="flex flex-col">

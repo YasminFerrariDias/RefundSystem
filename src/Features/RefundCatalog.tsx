@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Request } from "../components/Request"
-import requests from "../utils/requests.json";
+import { requests } from "../utils/requests";
 import { Text } from "../components/Text/Text";
 import { IconButton } from "../components/Button/IconButton/IconButton";
 import { GrFormPrevious } from "react-icons/gr";
@@ -32,6 +32,7 @@ export function RefundCatalog() {
             id={request.id}
             name={request.name}
             amount={request.amount}
+            icon={request.icon}
             category={request.category}
           />
         ))}
