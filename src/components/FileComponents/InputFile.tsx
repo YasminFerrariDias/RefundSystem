@@ -3,7 +3,7 @@ import { IconButton } from "../Button/IconButton/IconButton";
 import { Text } from "../Text/Text";
 import { useRef, useState } from "react";
 
-export function InputPDF() {
+export function InputFile() {
   const [ nameFile, setNameFile] = useState("Nome do arquivo.pdf")
 
   const fileInputRef = useRef<HTMLInputElement>(null)

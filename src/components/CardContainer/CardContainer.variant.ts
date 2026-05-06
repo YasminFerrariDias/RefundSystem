@@ -6,10 +6,10 @@ export const cardContainerVariant = tv({
   `,
   variants: {
     size: {
-      sm: "w-[512px] h-[224px] ",
-      md: "w-[512px] h-[388px]",
-      lg: "w-[512px] h-[504px]",
-      xl: "w-4/5 max-h-4/5 overflow-y-auto"
+      sm: "w-[512px] h-[224px] overflow-y-auto",
+      md: "w-[512px] h-[388px] overflow-y-auto",
+      lg: "w-[512px] h-[504px] overflow-y-auto",
+      xl: "inset-0 absolute ml-20 mr-20 mb-20 mt-35"
     }
   },
   defaultVariants: {

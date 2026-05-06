@@ -6,8 +6,8 @@ import { NavLink } from "../components/NavLink";
 import { Request } from "../components/Request";
 import { CiSearch } from "react-icons/ci";
 import { Select } from "../components/Select/Select";
-import { InputPDF } from "../components/PDFComponents/InputPDF";
-import { PreviewPDF } from "../components/PDFComponents/previewPDF";
+import { InputFile } from "../components/FileComponents/InputFile";
+import { PreviewFile } from "../components/FileComponents/previewFile";
 
 export function Components() {
   return (
@@ -39,11 +39,11 @@ export function Components() {
         </div>
 
         <div>
-          <InputPDF />
+          <InputFile />
         </div>
 
         <div>
-          <PreviewPDF />
+          <PreviewFile />
         </div>
       </CardContainer>
     </div>

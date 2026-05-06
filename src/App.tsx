@@ -1,9 +1,9 @@
-import { Components } from "./pages/components";
+import { Home } from "./pages/Home/home";
 
 export function App() {
   return (
-    <>
-      <Components />
-    </>
+    <div className="bg-gray-400" h-full>
+      <Home />
+    </div>
   )
 }
