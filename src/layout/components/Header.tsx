@@ -3,6 +3,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { Text } from "../../components/Text/Text";
 import { NavLink } from "../../components/NavLink";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
+import { Dialog, DialogContent, DialogTrigger } from "../../components/dialog";
 
 export function Header() {
   return (
@@ -13,7 +14,18 @@ export function Header() {
       </div>
       <div className="flex gap-8 items-center">
         <NavLink link="#" text="Solicitação de reembolso" isActive />
-        <ButtonContainer text="Nova Solicitação" textColor="white" decoration="bold" />
+
+
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <ButtonContainer text="Nova Solicitação" textColor="white" decoration="bold" />
+          </DialogTrigger>
+          <DialogContent>
+            <Text>teste modal</Text>
+          </DialogContent>
+        </Dialog>
+
       </div>
     </div>
   )
