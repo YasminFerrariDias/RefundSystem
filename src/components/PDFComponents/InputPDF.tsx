@@ -18,7 +18,13 @@ export function InputPDF() {
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) {
-            setNameFile(file.name)
+            const size = file.size
+            const maxSize = 2 * 1024 * 1024 
+            if (size <= maxSize) {
+              setNameFile(file.name)
+            } else {
+              setNameFile("Nome do arquivo.pdf")
+            }
           }
         }}
       />
