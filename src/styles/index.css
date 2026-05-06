@@ -14,3 +14,8 @@
   --color-green-100: #1F8459;
   --color-green-200: #2CB178;
 }
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}

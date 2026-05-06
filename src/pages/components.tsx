@@ -11,7 +11,7 @@ import { PreviewPDF } from "../components/PDFComponents/previewPDF";
 
 export function Components() {
   return (
-    <div className="bg-gray-400 w-auto h-screen flex justify-center">
+    <div className="bg-gray-400 w-auto h-screen flex justify-center relative overflow-hidden">
       <CardContainer size="xl" className="flex flex-col gap-3">
         <div>
           <Request />
