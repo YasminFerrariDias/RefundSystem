@@ -10,6 +10,7 @@ interface IconButtonProps
 
   text: string
   textColor?: "white" | "green100"
+  decoration?: "bold" 
   sizeText?:
   | "xs"
   | "sm"
@@ -20,13 +21,13 @@ interface IconButtonProps
   | "lgLine"
 }
 
-export function ButtonContainer({ as = "button", buttonColor, text, sizeText, textColor, className, ...props }: IconButtonProps) {
+export function ButtonContainer({ as = "button", buttonColor, text, decoration, sizeText, textColor, className, ...props }: IconButtonProps) {
   return React.createElement(
     as,
     {
       className: buttonContainerVariant({ buttonColor, className }),
       ...props
     },
-    <Text children={text} size={sizeText} textColor={textColor} />
+    <Text children={text} size={sizeText} textColor={textColor} decoration={decoration} />
   )
 }

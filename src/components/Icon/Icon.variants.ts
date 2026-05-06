@@ -10,6 +10,7 @@ export const iconVariant = tv({
     iconColor: {
       white: "text-white",
       green100: "text-green-100",
+      green200: "text-green-200",
     },
   },
   defaultVariants: {

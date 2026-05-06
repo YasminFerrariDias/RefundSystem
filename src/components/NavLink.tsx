@@ -10,7 +10,7 @@ export function NavLink({ link, text, isActive = false, disabled, ...props }: Na
     <a
       href={disabled ? undefined : link}
       className={`
-        text-sm font-semibold
+        text-[14px] font-semibold
         ${disabled 
           ? 'text-gray-200 cursor-not-allowed' 
           : isActive 
