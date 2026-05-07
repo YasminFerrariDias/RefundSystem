@@ -20,7 +20,7 @@ export function DetailsRefund() {
             <Input title="VALOR" placeholder="0,00" className="w-38" />
           </div>
           <PreviewFile text="Abrir comprovante" link="https://www.google.com/?hl=pt_BR" />
-          <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" />
+          <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
         </div>
       </CardContainer>
     </div>

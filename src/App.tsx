@@ -3,6 +3,7 @@ import { NewRefund } from "./Features/NewRefund";
 
 import { DetailsRefund } from "./Features/DetailsRefund";
 import { RefundList } from "./Features/RefundList";
+import { RequestSent } from "./Features/RequestSent";
 
 export function App() {
 
@@ -12,6 +13,7 @@ export function App() {
         <Route path='/' element={<RefundList />} />
         <Route path='/NewRefund' element={<NewRefund />} />
         <Route path='/DetailsRefund' element={<DetailsRefund />} />
+        <Route path='/RequestSent' element={<RequestSent />} />
       </Routes>
     </div>
   )
