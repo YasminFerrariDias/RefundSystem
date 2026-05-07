@@ -3,7 +3,7 @@ import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
-import { RefundCatalog } from "../../Features/RefundCatalog";
+import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
 
 export function Home() {
   return (

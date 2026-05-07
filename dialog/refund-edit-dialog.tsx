@@ -1,8 +1,8 @@
-import { ButtonContainer } from "../../../components/Button/ButtonContainer/ButtonContainer";
-import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../../../components/dialog";
-import { PreviewFile } from "../../../components/FileComponents/previewFile";
-import { Input } from "../../../components/Input";
-import { Select } from "../../../components/Select/Select";
+import { ButtonContainer } from "../src/components/Button/ButtonContainer/ButtonContainer";
+import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "./dialog";
+import { PreviewFile } from "../src/components/FileComponents/previewFile";
+import { Input } from "../src/components/Input";
+import { Select } from "../src/components/Select/Select";
 
 export function RefundEditDialog() {
   return (

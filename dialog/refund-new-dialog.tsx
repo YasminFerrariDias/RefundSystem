@@ -1,9 +1,9 @@
-import { Alert } from "../../../components/Alert";
-import { ButtonContainer } from "../../../components/Button/ButtonContainer/ButtonContainer";
-import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../../../components/dialog";
-import { InputFile } from "../../../components/FileComponents/InputFile";
-import { Input } from "../../../components/Input";
-import { Select } from "../../../components/Select/Select";
+import { Alert } from "../src/components/Alert";
+import { ButtonContainer } from "../src/components/Button/ButtonContainer/ButtonContainer";
+import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "./dialog";
+import { InputFile } from "../src/components/FileComponents/InputFile";
+import { Input } from "../src/components/Input";
+import { Select } from "../src/components/Select/Select";
 
 export function RefundNewDialog() {
   return (

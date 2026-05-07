@@ -3,9 +3,9 @@ import { Icon } from "../../components/Icon/Icon";
 import { Text } from "../../components/Text/Text";
 import { NavLink } from "../../components/NavLink";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
-import { Dialog, DialogTrigger } from "../../components/dialog";
-import { RefundNewDialog } from "../../context/Refunds/components/refund-new-dialog";
-import { RefundEditDialog } from "../../context/Refunds/components/refund-edit-dialog";
+import { Dialog, DialogTrigger } from "../../../dialog/dialog";
+import { RefundNewDialog } from "../../../dialog/refund-new-dialog";
+import { RefundEditDialog } from "../../../dialog/refund-edit-dialog";
 
 export function Header() {
   return (

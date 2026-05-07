@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Request } from "../components/Request"
-import { requests } from "../utils/requests";
-import { Text } from "../components/Text/Text";
-import { IconButton } from "../components/Button/IconButton/IconButton";
+import { Request } from "../../../components/Request"
+import { requests } from "../../../utils/requests";
+import { Text } from "../../../components/Text/Text";
+import { IconButton } from "../../../components/Button/IconButton/IconButton";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 

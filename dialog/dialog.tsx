@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { CardContainer } from "./CardContainer/CardContainer";
+import { CardContainer } from "../src/components/CardContainer/CardContainer";
 import cn from "classnames";
-import { Text } from "./Text/Text";
-import { IconButton } from "./Button/IconButton/IconButton";
+import { Text } from "../src/components/Text/Text";
+import { IconButton } from "../src/components/Button/IconButton/IconButton";
 import { IoMdClose } from "react-icons/io";
 import type React from "react";
 
@@ -66,11 +66,11 @@ export function DialogContent({
   )
 }
 
-interface DialogHeaderProps 
+interface DialogHeaderProps
   extends React.ComponentProps<"div"> {
   title: string
   text: string
-} 
+}
 
 export function DialogHeader({
   title, text, className, ...props
@@ -92,7 +92,7 @@ export function DialogHeader({
   )
 }
 
-export function DialogBody({children, ...props}: React.ComponentProps<"div">) {
+export function DialogBody({ children, ...props }: React.ComponentProps<"div">) {
   return <div {...props}>{children}</div>
 }
 
