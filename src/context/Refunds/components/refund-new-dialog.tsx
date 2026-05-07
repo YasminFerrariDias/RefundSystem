@@ -1,3 +1,4 @@
+import { Alert } from "../../../components/Alert";
 import { ButtonContainer } from "../../../components/Button/ButtonContainer/ButtonContainer";
 import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../../../components/dialog";
 import { InputFile } from "../../../components/FileComponents/InputFile";
@@ -14,7 +15,8 @@ export function RefundNewDialog() {
           <Select title="CATEGORIA" className="w-full"></Select>
           <Input placeholder="0,00" title="VALOR" className="w-38.5" />
         </div>
-        <InputFile />
+        <Alert textSize="2MB" textFormat="JPG, PNG e PDF" />
+        <InputFile title="COMPROVANTE" />
       </DialogBody>
       <DialogFooter>
         <ButtonContainer text="Excluir" size="full" textColor="white" className="w-full" />

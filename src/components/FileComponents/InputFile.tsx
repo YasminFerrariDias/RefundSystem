@@ -3,7 +3,11 @@ import { IconButton } from "../Button/IconButton/IconButton";
 import { Text } from "../Text/Text";
 import { useRef, useState } from "react";
 
-export function InputFile() {
+interface InputFileProps {
+  title: string;
+}
+
+export function InputFile({ title }: InputFileProps) {
   const [ nameFile, setNameFile] = useState("Nome do arquivo.pdf")
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -28,7 +32,7 @@ export function InputFile() {
           }
         }}
       />
-      <Text size="xs" textColor="gray200">COMPROVANTE</Text>
+      <Text size="xs" textColor="gray200">{title}</Text>
       <div
         className={`
           w-full h-12 relative group bg-white border border-gray-300 rounded-lg overflow-hidden
@@ -39,7 +43,7 @@ export function InputFile() {
             icon={FiUploadCloud}
             iconColor="white"
             color="bg-green-100"
-            className="cursor-pointer"
+            className="cursor-pointer m-0"
             onClick={openFileSelector}
           />
         </div>
