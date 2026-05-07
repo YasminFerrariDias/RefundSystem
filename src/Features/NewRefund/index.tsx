@@ -1,9 +1,9 @@
-import { ButtonContainer } from "../../../components/Button/ButtonContainer/ButtonContainer";
-import { CardContainer } from "../../../components/CardContainer/CardContainer";
-import { InputFile } from "../../../components/FileComponents/InputFile";
-import { Input } from "../../../components/Input";
-import { Select } from "../../../components/Select/Select";
-import { Text } from "../../../components/Text/Text";
+import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
+import { CardContainer } from "../../components/CardContainer/CardContainer";
+import { InputFile } from "../../components/FileComponents/InputFile";
+import { Input } from "../../components/Input";
+import { Select } from "../../components/Select/Select";
+import { Text } from "../../components/Text/Text";
 
 export function NewRefund() {
   return (
@@ -14,7 +14,7 @@ export function NewRefund() {
           <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
         </header>
         <div className="flex flex-col gap-6">
-          <Input placeholder="" title="NOME DA SOLICITAÇÃO"/>
+          <Input placeholder="" title="NOME DA SOLICITAÇÃO" />
           <div className="flex gap-2">
             <Select title="CATEGORIA" className="w-full" />
             <Input title="VALOR" placeholder="0,00" className="w-38" />

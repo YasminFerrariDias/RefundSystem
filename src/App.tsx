@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { NewRefund } from "./Features/NewRefund/components";
+import { NewRefund } from "./Features/NewRefund";
 import { RefundList } from "./Features/RefundList";
 
 export function App() {
-  
+
   return (
     <div className="bg-gray-400 h-full" >
       <Routes>
