@@ -1,9 +1,9 @@
-import { Home } from "./pages/Home/home";
+import { RefundList } from "./Features/RefundList";
 
 export function App() {
   return (
     <div className="bg-gray-400 h-full" >
-      <Home />
+      <RefundList />
     </div>
   )
 }

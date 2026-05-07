@@ -5,7 +5,7 @@ import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
 
-export function Home() {
+export function RefundList() {
   return (
     <CardContainer>
       <div className="flex flex-col gap-6">
