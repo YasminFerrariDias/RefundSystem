@@ -3,7 +3,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { Text } from "../../components/Text/Text";
 import { NavLink } from "../../components/NavLink";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
-import { Dialog, DialogContent, DialogTrigger } from "../../components/dialog";
+import { Dialog, DialogBody, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "../../components/dialog";
 
 export function Header() {
   return (
@@ -22,7 +22,14 @@ export function Header() {
             <ButtonContainer text="Nova Solicitação" textColor="white" decoration="bold" />
           </DialogTrigger>
           <DialogContent>
-            <Text>teste modal</Text>
+            <DialogHeader title="Solicitação de reembolso" text="Dados da despesa para solicitar reembolso" />
+            <DialogBody>
+              <Text>oiiiiiiii</Text>
+              <ButtonContainer text="fsvl nkfs"></ButtonContainer>
+            </DialogBody>
+            <DialogFooter>
+              <ButtonContainer text="DELETAR" size="full"  />
+            </DialogFooter>
           </DialogContent>
         </Dialog>
 
