@@ -1,6 +1,6 @@
 interface ComponentsProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  placeholder: string
+  placeholder?: string
   title?: string
 }
 

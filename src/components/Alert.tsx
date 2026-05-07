@@ -3,14 +3,15 @@ import { Text } from "./Text/Text";
 interface AlertProps {
   textSize: string
   textFormat: string
+  className?: string
 }
 
-export function Alert({textSize, textFormat}: AlertProps) {
+export function Alert({textSize, textFormat, className}: AlertProps) {
   return (
-    <div className="border-r-gray-400-solid border p-3 rounded-2xl">
-      <Text size="md" >Tamanho máximo: {textSize}</Text>
+    <div className={`p-3 rounded-lg bg-gray-400 ${className}`}>
+      <Text size="md">Tamanho máximo: {textSize}</Text>
       <b />
-      <Text>Tamanho máximo: {textFormat}</Text>
+      <Text>Você pode selecionar arquivos em {textFormat}</Text>
     </div>
   )
 }

@@ -5,10 +5,11 @@ import { useRef, useState } from "react";
 
 interface InputFileProps {
   title: string;
+  onChange?: () => void
 }
 
-export function InputFile({ title }: InputFileProps) {
-  const [ nameFile, setNameFile] = useState("Nome do arquivo.pdf")
+export function InputFile({ title, onChange }: InputFileProps) {
+  const [nameFile, setNameFile] = useState("Nome do arquivo.pdf")
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -18,14 +19,15 @@ export function InputFile({ title }: InputFileProps) {
 
   return (
     <div>
-      <input type="file" ref={fileInputRef} className="hidden" accept=".pdf, .jpg, .png" 
+      <input type="file" ref={fileInputRef} className="hidden" accept=".pdf, .jpg, .png"
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) {
             const size = file.size
-            const maxSize = 2 * 1024 * 1024 
+            const maxSize = 2 * 1024 * 1024
             if (size <= maxSize) {
               setNameFile(file.name)
+              onChange?.()
             } else {
               setNameFile("Nome do arquivo.pdf")
             }
@@ -49,5 +51,6 @@ export function InputFile({ title }: InputFileProps) {
         </div>
       </div>
     </div>
+
   )
 }

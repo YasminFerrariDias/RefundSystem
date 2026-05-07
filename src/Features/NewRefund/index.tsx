@@ -1,11 +1,19 @@
+import { Alert } from "../../components/Alert";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { InputFile } from "../../components/FileComponents/InputFile";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select/Select";
 import { Text } from "../../components/Text/Text";
+import { useSelectedFile } from "./hooks/useSelectedFile";
 
 export function NewRefund() {
+  const {hasFile, setHasFile} = useSelectedFile()
+
+  function handleFileChange() {
+    setHasFile(true)
+  }
+
   return (
     <div className="flex items-center justify-center">
       <CardContainer size="md" >
@@ -14,12 +22,18 @@ export function NewRefund() {
           <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
         </header>
         <div className="flex flex-col gap-6">
-          <Input placeholder="" title="NOME DA SOLICITAÇÃO" />
+          <Input title="NOME DA SOLICITAÇÃO" />
           <div className="flex gap-2">
             <Select title="CATEGORIA" className="w-full" />
             <Input title="VALOR" placeholder="0,00" className="w-38" />
           </div>
-          <InputFile title="COMPROVANTE" />
+          <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG" className={
+            hasFile
+            ? "hidden"
+            : "opacity-100"
+          }
+          />
+          <InputFile title="COMPROVANTE" onChange={handleFileChange}/>
           <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" />
         </div>
       </CardContainer>
