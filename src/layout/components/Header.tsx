@@ -5,7 +5,6 @@ import { NavLink } from "../../components/NavLink";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { Dialog, DialogTrigger } from "../../../dialog/dialog";
 import { RefundNewDialog } from "../../../dialog/refund-new-dialog";
-import { RefundEditDialog } from "../../../dialog/refund-edit-dialog";
 
 export function Header() {
   return (
@@ -14,14 +13,8 @@ export function Header() {
         <Icon icon={HiArrowUturnRight} size="md" iconColor="green100"></Icon>
         <Text size="lg" decoration="semibold" textColor="green100">refund</Text>
       </div>
-      <div className="flex gap-8">
-        <Dialog>
-          <DialogTrigger asChild>
-            <NavLink link="#" text="Solicitação de reembolso" isActive />
-          </DialogTrigger>
-
-          <RefundEditDialog />
-        </Dialog>
+      <div className="flex gap-8 items-center">
+        <NavLink link="#" text="Solicitação de reembolso" isActive />
 
         <Dialog>
           <DialogTrigger asChild>
