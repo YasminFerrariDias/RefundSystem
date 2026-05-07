@@ -17,7 +17,7 @@ export function Header() {
 
       <div className="flex gap-8 items-center">
         <Link to="/">
-          <NavLink link="#" text="Solicitação de reembolso" isActive />
+          <NavLink link="#" text="Solicitações de reembolso" isActive />
         </Link>
 
         <Link to="/NewRefund">

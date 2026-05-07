@@ -3,8 +3,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { CardContainer } from "../../src/components/CardContainer/CardContainer";
 import cn from "classnames";
 import { Text } from "../../src/components/Text/Text";
-import { IconButton } from "../../src/components/Button/IconButton/IconButton";
-import { IoMdClose } from "react-icons/io";
 import type React from "react";
 
 export const Dialog = DialogPrimitive.Root;
@@ -21,7 +19,7 @@ export function DialogOverlay({
 >) {
   return <DialogPrimitive.Overlay
     className={cn(`
-      fixed inset-0 z-50 bg-gray-400
+      fixed inset-0 z-50 bg-gray-100/60
       data-[state=open]:animate-in
       data-[state=open]:fade-in-0 
       data-[state=closed]:animate-out
@@ -84,9 +82,6 @@ export function DialogHeader({
           <Text size="lg" decoration="bold" className="flex-1">{title}</Text>
           <Text size="md" decoration="regular" className="flex-1">{text}</Text>
         </DialogPrimitive.Title>
-        <DialogClose asChild>
-          <IconButton icon={IoMdClose} buttonColor="transparent" />
-        </DialogClose>
       </header>
     </>
   )
