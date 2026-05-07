@@ -7,6 +7,9 @@ import { Input } from "../../components/Input";
 import { Select } from "../../components/Select/Select";
 import { Text } from "../../components/Text/Text";
 import { DeleteDialog } from "../DeleteDialog";
+import { IconButton } from "../../components/Button/IconButton/IconButton";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
@@ -25,12 +28,18 @@ export function DetailsRefund() {
             <Input title="VALOR" placeholder="0,00" className="w-38" />
           </div>
           <PreviewFile text="Abrir comprovante" link="https://www.google.com/?hl=pt_BR" />
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
-            </DialogTrigger>
-            <DeleteDialog />
-          </Dialog>
+          <div className="flex gap-2 m-0">
+            <Link to='/'>
+              <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
+            </Link>
+
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
+              </DialogTrigger>
+              <DeleteDialog />
+            </Dialog>
+          </div>
         </div>
       </CardContainer>
     </div>

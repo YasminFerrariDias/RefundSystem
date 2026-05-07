@@ -13,6 +13,7 @@ export function DeleteDialog() {
           <ButtonContainer text="Cancelar" size="fit" textColor="green100" buttonColor="transparent" />
         </DialogClose>
         
+
         <ButtonContainer text="Confirmar" size="fit" textColor="white" />
       </DialogFooter>
     </DialogContent>
