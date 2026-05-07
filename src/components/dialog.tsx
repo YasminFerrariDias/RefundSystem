@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { CardContainer } from "../src/components/CardContainer/CardContainer";
+import { CardContainer } from "../../src/components/CardContainer/CardContainer";
 import cn from "classnames";
-import { Text } from "../src/components/Text/Text";
-import { IconButton } from "../src/components/Button/IconButton/IconButton";
+import { Text } from "../../src/components/Text/Text";
+import { IconButton } from "../../src/components/Button/IconButton/IconButton";
 import { IoMdClose } from "react-icons/io";
 import type React from "react";
 

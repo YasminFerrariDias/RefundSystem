@@ -1,8 +1,8 @@
-import { ButtonContainer } from "../src/components/Button/ButtonContainer/ButtonContainer";
-import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../src/components/dialog";
-import { PreviewFile } from "../src/components/FileComponents/previewFile";
-import { Input } from "../src/components/Input";
-import { Select } from "../src/components/Select/Select";
+import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
+import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../../components/dialog";
+import { Input } from "../../components/Input";
+import { Select } from "../../components/Select/Select";
+
 
 export function RefundEditDialog() {
   return (
@@ -14,7 +14,7 @@ export function RefundEditDialog() {
           <Select title="CATEGORIA" className="w-full"></Select>
           <Input placeholder="0,00" title="VALOR" className="w-38.5" />
         </div>
-        <PreviewFile text="Abrir comprovante" link="#" className="pb-4" />
+
       </DialogBody>
       <DialogFooter>
         <ButtonContainer text="Excluir" size="full" textColor="white" className="w-full" />

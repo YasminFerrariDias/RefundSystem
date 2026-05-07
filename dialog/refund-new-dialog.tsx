@@ -1,6 +1,6 @@
 import { Alert } from "../src/components/Alert";
 import { ButtonContainer } from "../src/components/Button/ButtonContainer/ButtonContainer";
-import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "./dialog";
+import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../src/components/dialog";
 import { InputFile } from "../src/components/FileComponents/InputFile";
 import { Input } from "../src/components/Input";
 import { Select } from "../src/components/Select/Select";
