@@ -22,7 +22,6 @@ export function DialogOverlay({
   return <DialogPrimitive.Overlay
     className={cn(`
       fixed inset-0 z-50 bg-gray-400
-      backdrop-blur-sm
       data-[state=open]:animate-in
       data-[state=open]:fade-in-0 
       data-[state=closed]:animate-out
@@ -43,7 +42,7 @@ export function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content ref={ref}
         className={cn(`
-          bg-white
+          bg-white rounded-2xl
           fixed left-[50%] top-[50%] w-full max-w-lg 
           z-60 translate-x-[-50%] translate-y-[-50%]
           data-[state=open]:animate-in

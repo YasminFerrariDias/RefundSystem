@@ -5,9 +5,10 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 interface SelectProps {
   title: string
   disabled?: boolean
+  className?: string
 }
 
-export function Select({title, disabled = false }: SelectProps) {
+export function Select({title, className, disabled = false }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
   const [optionSelect, setOptionSelect] = useState("Selecione")
 
@@ -17,7 +18,7 @@ export function Select({title, disabled = false }: SelectProps) {
   }
 
   return (
-    <div className="flex flex-col gap-1 relative group">
+    <div className={`flex flex-col gap-1 relative group ${className}`}>
       <label className={`
         text-sm transition-colors duration-200
         group-focus-within:text-green-100  text-[10px]
@@ -44,7 +45,7 @@ export function Select({title, disabled = false }: SelectProps) {
 
       <div
         className={`
-          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100 absolute top-full left-0 right-0 mt-1 z-1
+          bg-white border-gray-300 border rounded-lg p-3 gap-2 flex flex-col transition-all duration-100 absolute top-full left-0 right-0 mt-1 z-50
           ${isOpen ? 'visible' : 'hidden'}         
         `}
       >
