@@ -10,9 +10,13 @@ import { DeleteDialog } from "../DeleteDialog";
 import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { requests } from "../../utils/requests";
 
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
+  const { id } = useParams()
+  const refund = requests.find(item => item.id === parseInt(id || "0"))
 
   return (
     <div className="flex items-center justify-center">
@@ -22,12 +26,12 @@ export function DetailsRefund() {
           <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
         </header>
         <div className="flex flex-col gap-6">
-          <Input placeholder="" title="NOME DA SOLICITAÇÃO" />
+          <Input value={refund?.name} title="NOME DA SOLICITAÇÃO" readOnly />
           <div className="flex gap-2">
-            <Select title="CATEGORIA" className="w-full" />
-            <Input title="VALOR" placeholder="0,00" className="w-38" />
+            <Select title="CATEGORIA" className="w-full" value={refund?.category} readOnly />
+            <Input title="VALOR" value={refund?.amount} className="w-38" readOnly />
           </div>
-          <PreviewFile text="Abrir comprovante" link="https://www.google.com/?hl=pt_BR" />
+          <PreviewFile text="Abrir comprovante" link={refund?.receiptUrl} target="_blank" />
           <div className="flex gap-2 m-0">
             <Link to='/'>
               <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />

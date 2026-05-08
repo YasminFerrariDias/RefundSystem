@@ -5,17 +5,18 @@ import cn from "classnames";
 
 interface PreviewFileProps {
   text: string
-  link: string
+  link?: string
   className?: string
+  target?: string
 }
 
-export function PreviewFile({ text, link, className, ...props }: PreviewFileProps) {
+export function PreviewFile({ text, link, className, target, ...props }: PreviewFileProps) {
   return (
     <div className={cn(`
       flex gap-1 justify-center flex-row
       `, className)}
       {...props}>
-      <a href={link} className="flex">
+      <a href={link} className="flex" target={target}>
         <Icon icon={FaRegFile} iconColor="green100" size="sm" />
         <Text size="md" textColor="green100" decoration="semibold">{text}</Text>
       </a>

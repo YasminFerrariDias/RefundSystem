@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/set-state-in-effect */
+import { useEffect, useState } from "react";
 import { useToggle } from "./hooks/useToggle";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -6,19 +7,27 @@ interface SelectProps {
   title: string
   disabled?: boolean
   className?: string
+  value?: string
+  readOnly?: boolean
 }
 
-export function Select({title, className, disabled = false }: SelectProps) {
+export function Select({ title, className, disabled = false, value, readOnly, ...props }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
-  const [optionSelect, setOptionSelect] = useState("Selecione")
+  const [optionSelect, setOptionSelect] = useState(value || "Selecione")
 
   function handleSelected(name: string) {
     setOptionSelect(name)
     close()
   }
 
+  useEffect(() => {
+    if (value) {
+      setOptionSelect(value)
+    }
+  }, [value])
+
   return (
-    <div className={`flex flex-col gap-1 relative group ${className}`}>
+    <div className={`flex flex-col gap-1 relative group ${className}`} {...props}>
       <label className={`
         text-sm transition-colors duration-200
         group-focus-within:text-green-100  text-[10px]
@@ -36,8 +45,8 @@ export function Select({title, className, disabled = false }: SelectProps) {
           ${isOpen ? 'border-green-100 ring-1 ring-green-100' : ''}
           ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         `}
-        onClick={disabled ? undefined : toggle}
-        tabIndex={disabled ? -1 : 0}  
+        onClick={disabled || readOnly ? undefined : toggle}
+        tabIndex={disabled ? -1 : 0}
       >
         <span>{optionSelect}</span>
         <span className="flex items-center">{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
