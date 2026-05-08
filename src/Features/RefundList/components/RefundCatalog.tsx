@@ -37,7 +37,7 @@ export function RefundCatalog() {
             icon={request.icon}
             category={request.category}
             className={`hover:bg-gray-400`}
-            onClick={() => navigate("/DetailsRefund")}
+            onClick={() => navigate(`/DetailsRefund/${request.id}`)}
           />
         ))}
       </div>

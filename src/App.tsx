@@ -12,8 +12,9 @@ export function App() {
       <Routes>
         <Route path='/' element={<RefundList />} />
         <Route path='/NewRefund' element={<NewRefund />} />
-        <Route path='/DetailsRefund' element={<DetailsRefund />} />
         <Route path='/RequestSent' element={<RequestSent />} />
+        <Route path='/DetailsRefund' element={<DetailsRefund />} />
+        <Route path='/DetailsRefund/:id' element={<DetailsRefund />} />
       </Routes>
     </div>
   )
