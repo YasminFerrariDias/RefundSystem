@@ -13,9 +13,16 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
   const { deleteRefund } = useContext(RefundContext)
 
   function handleConfirm() {
-    deleteRefund(id)
+    try {
+      deleteRefund(id)
 
-    navigate("/")
+      alert("Excluido com sucesso")
+
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+      alert("Erro ao excluir")
+    }
   }
 
   return (

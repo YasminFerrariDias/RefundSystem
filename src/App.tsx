@@ -1,15 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import { NewRefund } from "./Features/NewRefund";
-
 import { DetailsRefund } from "./Features/DetailsRefund";
 import { RefundList } from "./Features/RefundList";
 import { RequestSent } from "./Features/RequestSent";
-import { RefundProvider } from "./contexts/Refund/RefundProvider";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { AppProvider } from "./contexts/AppProvider";
 
 export function App() {
-
   return (
-    <RefundProvider>
+    <AppProvider>
       <div className="bg-gray-400 h-full" >
         <Routes>
           <Route path='/' element={<RefundList />} />
@@ -19,6 +18,6 @@ export function App() {
           <Route path='/DetailsRefund/:id' element={<DetailsRefund />} />
         </Routes>
       </div>
-    </RefundProvider>
+    </AppProvider>
   )
 }
