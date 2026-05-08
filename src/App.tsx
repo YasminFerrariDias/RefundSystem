@@ -3,14 +3,15 @@ import { NewRefund } from "./Features/NewRefund";
 import { DetailsRefund } from "./Features/DetailsRefund";
 import { RefundList } from "./Features/RefundList";
 import { RequestSent } from "./Features/RequestSent";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { AppProvider } from "./contexts/AppProvider";
+import { Toast } from "./components/Toast";
 
 export function App() {
   return (
     <AppProvider>
       <div className="bg-gray-400 h-full" >
-        <Routes>
+        <Toast />
+        <Routes> 
           <Route path='/' element={<RefundList />} />
           <Route path='/NewRefund' element={<NewRefund />} />
           <Route path='/RequestSent' element={<RequestSent />} />
