@@ -2,16 +2,20 @@ import { useContext } from "react";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { DialogClose, DialogContent, DialogFooter, DialogHeader } from "../../components/dialog";
 import { RefundContext } from "../../contexts/Refund/RefundContext";
+import { useNavigate } from "react-router-dom";
 
 interface DeleteDialogProps {
   id: number
 }
 
 export function DeleteDialog({ id }: DeleteDialogProps) {
+  const navigate = useNavigate()
   const { deleteRefund } = useContext(RefundContext)
 
   function handleConfirm() {
     deleteRefund(id)
+
+    navigate("/")
   }
 
   return (
