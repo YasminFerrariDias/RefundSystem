@@ -8,11 +8,13 @@ interface RequestProps {
   category: string;
   icon: IconType
   amount: number
+  onClick?: () => void 
+  className?: string 
 }
 
-export function Request({ id, name, category, icon, amount }: RequestProps) {
+export function Request({ id, name, category, icon, amount, onClick, className, ...props }: RequestProps) {
   return (
-    <div className="flex items-center gap-3 p-0 w-full" key={id}>
+    <div className={`flex items-center gap-3 p-2.5 w-full rounded-lg ${className}`} key={id} onClick={onClick} {...props}>
       <div className="bg-gray-400 w-8.5 h-8.5 rounded-full justify-center items-center flex ">
         <Icon icon={icon} size="sm" iconColor="green100" />
       </div>

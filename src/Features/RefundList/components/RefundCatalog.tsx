@@ -5,8 +5,10 @@ import { Text } from "../../../components/Text/Text";
 import { IconButton } from "../../../components/Button/IconButton/IconButton";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export function RefundCatalog() {
+  const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
 
   const itemsPerPage = 6
@@ -25,7 +27,7 @@ export function RefundCatalog() {
 
   return (
     <>
-      <div className="flex flex-col gap-5 ">
+      <div className="flex flex-col">
         {page.map((request) => (
           <Request
             key={request.id}
@@ -34,6 +36,8 @@ export function RefundCatalog() {
             amount={request.amount}
             icon={request.icon}
             category={request.category}
+            className={`hover:bg-gray-400`}
+            onClick={() => navigate("/DetailsRefund")}
           />
         ))}
       </div>
