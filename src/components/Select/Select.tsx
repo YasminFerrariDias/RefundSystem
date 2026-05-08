@@ -9,14 +9,16 @@ interface SelectProps {
   className?: string
   value?: string
   readOnly?: boolean
+  onChange?: (value: string) => void
 }
 
-export function Select({ title, className, disabled = false, value, readOnly, ...props }: SelectProps) {
+export function Select({ title, className, disabled = false, value, onChange, readOnly, ...props }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
   const [optionSelect, setOptionSelect] = useState(value || "Selecione")
 
   function handleSelected(name: string) {
     setOptionSelect(name)
+    onChange?.(name)
     close()
   }
 

@@ -1,18 +1,8 @@
-import type { IconType } from "react-icons";
+import type { RequesType } from "../Features/types/refundType";
 import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
 
-interface RequestProps {
-  id: number;
-  name: string;
-  category: string;
-  icon: IconType
-  amount: number
-  onClick?: () => void 
-  className?: string 
-}
-
-export function Request({ id, name, category, icon, amount, onClick, className, ...props }: RequestProps) {
+export function Request({ id, name, category, icon, amount, onClick, className, ...props }: RequesType) {
   return (
     <div className={`flex items-center gap-3 p-2.5 w-full rounded-lg ${className}`} key={id} onClick={onClick} {...props}>
       <div className="bg-gray-400 w-8.5 h-8.5 rounded-full justify-center items-center flex ">

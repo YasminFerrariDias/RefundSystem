@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 interface InputFileProps {
   title: string;
-  onChange?: () => void
+  onChange?: (URL: string) => void
 }
 
 export function InputFile({ title, onChange }: InputFileProps) {
@@ -27,7 +27,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
             const maxSize = 2 * 1024 * 1024
             if (size <= maxSize) {
               setNameFile(file.name)
-              onChange?.()
+              onChange?.(file.name)  
             } else {
               setNameFile("Nome do arquivo.pdf")
             }
@@ -42,6 +42,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
         <div className="w-full h-12 flex items-center justify-between pl-4">
           <Text className="text-gray-100" size="mdLine" textColor="gray200">{nameFile}</Text>
           <IconButton
+            type="button"
             icon={FiUploadCloud}
             iconColor="white"
             color="bg-green-100"
