@@ -1,7 +1,19 @@
+import { useContext } from "react";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { DialogClose, DialogContent, DialogFooter, DialogHeader } from "../../components/dialog";
+import { RefundContext } from "../../contexts/Refund/RefundContext";
 
-export function DeleteDialog() {
+interface DeleteDialogProps {
+  id: number
+}
+
+export function DeleteDialog({ id }: DeleteDialogProps) {
+  const { deleteRefund } = useContext(RefundContext)
+
+  function handleConfirm() {
+    deleteRefund(id)
+  }
+
   return (
     <DialogContent>
       <DialogHeader
@@ -10,11 +22,20 @@ export function DeleteDialog() {
         className="mb-6" />
       <DialogFooter className="flex gap-1 ">
         <DialogClose asChild>
-          <ButtonContainer text="Cancelar" size="fit" textColor="green100" buttonColor="transparent" />
+          <ButtonContainer
+            text="Cancelar"
+            size="fit"
+            textColor="green100"
+            buttonColor="transparent"
+          />
         </DialogClose>
-        
 
-        <ButtonContainer text="Confirmar" size="fit" textColor="white" />
+        <ButtonContainer
+          text="Confirmar"
+          size="fit"
+          textColor="white"
+          onClick={handleConfirm}
+        />
       </DialogFooter>
     </DialogContent>
   )

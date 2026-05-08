@@ -1,26 +1,11 @@
-interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  link: string
+interface NavLinkProps {
   text: string
-  isActive?: boolean
-  disabled?: boolean
 }
 
-export function NavLink({ link, text, isActive = false, disabled, ...props }: NavLinkProps) {
+export function NavLink({text, ...props }: NavLinkProps) {
   return (
-    <a
-      href={disabled ? undefined : link}
-      className={`
-        text-[14px] font-semibold
-        ${disabled 
-          ? 'text-gray-200 cursor-not-allowed' 
-          : isActive 
-            ? 'text-green-100' 
-            : 'text-gray-200 hover:text-green-100 transition-colors'
-        }
-      `}
-      {...props}
-    >
+    <p {...props}>
       {text}
-    </a>
+    </p>
   )
 }

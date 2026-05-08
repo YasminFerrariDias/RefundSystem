@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Request } from "../../../components/Request"
-import { requests } from "../../../utils/requests";
 import { Text } from "../../../components/Text/Text";
 import { IconButton } from "../../../components/Button/IconButton/IconButton";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { RefundContext } from "../../../contexts/Refund/RefundContext";
 
 export function RefundCatalog() {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
+  const { refunds } = useContext(RefundContext)
 
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
-  const page = requests.slice(start, end);
-  const numberOfPages = Math.ceil(requests.length / itemsPerPage)
+  const page = refunds.slice(start, end);
+  const numberOfPages = Math.ceil(refunds.length / itemsPerPage)
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
@@ -28,16 +29,16 @@ export function RefundCatalog() {
   return (
     <>
       <div className="flex flex-col">
-        {page.map((request) => (
+        {page.map((refund) => (
           <Request
-            key={request.id}
-            id={request.id}
-            name={request.name}
-            amount={request.amount}
-            icon={request.icon}
-            category={request.category}
+            key={refund.id}
+            id={refund.id}
+            name={refund.name}
+            amount={refund.amount}
+            icon={refund.icon}
+            category={refund.category}
             className={`hover:bg-gray-400`}
-            onClick={() => navigate(`/DetailsRefund/${request.id}`)}
+            onClick={() => navigate(`/DetailsRefund/${refund.id}`)}
           />
         ))}
       </div>

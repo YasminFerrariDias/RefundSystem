@@ -41,7 +41,7 @@ export function DetailsRefund() {
               <DialogTrigger asChild>
                 <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
               </DialogTrigger>
-              <DeleteDialog />
+              <DeleteDialog id={Number(refund?.id)}/>
             </Dialog>
           </div>
         </div>
