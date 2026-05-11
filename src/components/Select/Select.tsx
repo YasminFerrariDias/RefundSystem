@@ -24,10 +24,9 @@ export function Select({ title, className, disabled = false, value, onChange, re
     "others": "Outros",
   }
 
-  function handleSelected(optionSelect) {
-    const translateOption = optionSelect[0] = optionSelect[1] 
-    setOptionSelect(translateOption)
-    onChange?.(translateOption)
+  function handleSelected(name: string) {
+    setOptionSelect(name)
+    onChange?.(name)
     close()
   }
 

@@ -13,7 +13,7 @@ export function RefundProvider({ children }: RefundProviderProps) {
 
   const loadRefunds = async () => {
     const response = await ApiRefunds.getAll()
-    setRefunds(Array.isArray(response.data) ? response.data : response.data.data || [])
+    setRefunds(response.data.refunds.data)
   }
 
   const deleteRefund = async (id: string) => {
