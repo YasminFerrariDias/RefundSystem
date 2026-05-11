@@ -26,7 +26,6 @@ export function RefundCatalog() {
     setCurrentPage(currentPage - 1)
   }
 
-
   return (
     <>
       <div className="flex flex-col">
