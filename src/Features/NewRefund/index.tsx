@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Alert } from "../../components/Alert";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
@@ -5,19 +6,37 @@ import { InputFile } from "../../components/FileComponents/InputFile";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select/Select";
 import { Text } from "../../components/Text/Text";
-import type { RequesType } from "../types/refundType";
+import { ApiReceipts, ApiRefunds } from "../../services/api";
+import type { RefundType } from "../types/refundType";
 import { useSelectedFile } from "./hooks/useSelectedFile";
-import { useForm } from "react-hook-form"
-import { type SubmitHandler, Controller } from "react-hook-form"
+import { useForm, type SubmitHandler } from "react-hook-form"
+import { Controller } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
 
 export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
-  const { register, handleSubmit, control } = useForm<RequesType>()
-  const onSubmit: SubmitHandler<RequesType> = (data) => console.log(data)
+  const { register, handleSubmit, control } = useForm<RefundType>()
+  const [receipt, setReceiptFile] = useState<File | null>(null)
+  const navigate = useNavigate()
+
+  const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
+    const uploadResponse = await ApiReceipts.upload(receipt!)
+    const receiptId = uploadResponse.data.receipt.id
+
+    const refundData = {
+      title: data.title,
+      category: data.category,
+      value: data.value,
+      receipt: receiptId
+    }
+
+    await ApiRefunds.postCreate(refundData)
+    console.log("sucesso")
+    navigate("/")
+  }
 
   function handleFileChange() {
     setHasFile(true)
-    
   }
 
   return (
@@ -30,7 +49,7 @@ export function NewRefund() {
           </header>
 
           <div className="flex flex-col gap-6">
-            <Input title="NOME DA SOLICITAÇÃO" {...register("name")} />
+            <Input title="NOME DA SOLICITAÇÃO" {...register("title")} />
 
             <div className="flex gap-2">
               <Controller
@@ -46,28 +65,23 @@ export function NewRefund() {
                 )}
               />
 
-              <Input title="VALOR" placeholder="0,00" className="w-38" {...register("amount")} />
+              <Input title="VALOR" placeholder="0,00" className="w-38" {...register("value", { valueAsNumber: true })} />
             </div>
 
-            <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG" className={
-              hasFile
-                ? "hidden"
-                : "opacity-100"
-            }
+            <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG"
+              className={
+                hasFile
+                  ? "hidden"
+                  : "opacity-100"
+              }
             />
 
-            <Controller
-              name="receiptUrl"
-              control={control}
-              render={({ field }) => (
-                <InputFile
-                  title="COMPROVANTE"
-                  onChange={(URL => {
-                    handleFileChange()
-                    field.onChange(URL)
-                  })}
-                />
-              )}
+            <InputFile
+              title="COMPROVANTE"
+              onChange={(file => {
+                setReceiptFile(file)
+                handleFileChange()
+              })}
             />
 
             <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />

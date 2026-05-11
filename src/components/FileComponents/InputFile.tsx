@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 interface InputFileProps {
   title: string;
-  onChange?: (URL: string) => void
+  onChange?: (file: File) => void
 }
 
 export function InputFile({ title, onChange }: InputFileProps) {
@@ -27,7 +27,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
             const maxSize = 2 * 1024 * 1024
             if (size <= maxSize) {
               setNameFile(file.name)
-              onChange?.(file.name)  
+              onChange?.(file)  
             } else {
               setNameFile("Nome do arquivo.pdf")
             }

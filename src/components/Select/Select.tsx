@@ -16,9 +16,18 @@ export function Select({ title, className, disabled = false, value, onChange, re
   const { isOpen, close, toggle } = useToggle();
   const [optionSelect, setOptionSelect] = useState(value || "Selecione")
 
-  function handleSelected(name: string) {
-    setOptionSelect(name)
-    onChange?.(name)
+  const categoryMap = {
+    "food": "Alimentação",
+    "hosting": "Hospedagem",
+    "transport": "Transporte",
+    "services": "Serviços",
+    "others": "Outros",
+  }
+
+  function handleSelected(optionSelect) {
+    const translateOption = optionSelect[0] = optionSelect[1] 
+    setOptionSelect(translateOption)
+    onChange?.(translateOption)
     close()
   }
 
@@ -60,67 +69,22 @@ export function Select({ title, className, disabled = false, value, onChange, re
           ${isOpen ? 'visible' : 'hidden'}         
         `}
       >
-        <div
-          className={`
+
+        {Object.entries(categoryMap).map((category) => {
+          return (
+            <div key={category[0]} className={`
               p-1 cursor-pointer rounded 
-              ${optionSelect === 'Alimentação'
-              ? 'font-semibold'
-              : 'font-normal'
-            }`
-          }
-          onClick={() => handleSelected("Alimentação")}
-        >
-          <span>Alimentação</span>
-        </div>
-        <div
-          className={`
-              p-1 cursor-pointer rounded 
-              text-gray-100
-              ${optionSelect === 'Hospedagem'
-              ? 'font-semibold'
-              : 'font-normal'
-            }`
-          }
-          onClick={() => handleSelected("Hospedagem")}
-        >
-          <span>Hospedagem</span>
-        </div>
-        <div
-          className={`
-              p-1 cursor-pointer rounded 
-              ${optionSelect === 'Transporte'
-              ? 'font-semibold'
-              : 'font-normal'
-            }`
-          }
-          onClick={() => handleSelected("Transporte")}
-        >
-          <span>Transporte</span>
-        </div>
-        <div
-          className={`
-              p-1 cursor-pointer rounded 
-              ${optionSelect === 'Serviços'
-              ? 'font-semibold'
-              : 'font-normal'
-            }`
-          }
-          onClick={() => handleSelected("Serviços")}
-        >
-          <span>Serviços</span>
-        </div>
-        <div
-          className={`
-              p-1 cursor-pointer rounded 
-              ${optionSelect === 'Outros'
-              ? 'font-semibold'
-              : 'font-normal'
-            }`
-          }
-          onClick={() => handleSelected("Outros")}
-        >
-          <span>Outros</span>
-        </div>
+              ${optionSelect === category[0]
+                ? 'font-semibold'
+                : 'font-normal'
+              }`
+            }
+              onClick={() => handleSelected(category[0])}
+            >
+              <span>{category[1]}</span>
+            </div>
+          )
+        })}
       </div>
 
     </div>
