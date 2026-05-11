@@ -12,6 +12,7 @@ import { useSelectedFile } from "./hooks/useSelectedFile";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
 
 export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
@@ -30,9 +31,37 @@ export function NewRefund() {
       receipt: receiptId
     }
 
-    await ApiRefunds.postCreate(refundData)
-    console.log("sucesso")
-    navigate("/")
+    try {
+      await ApiRefunds.postCreate(refundData)
+
+      toast.success('Cadastrado com sucesso!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+      
+      toast.error('Erro ao cadastrar!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
   }
 
   function handleFileChange() {

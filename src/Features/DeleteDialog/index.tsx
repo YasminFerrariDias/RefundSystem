@@ -44,7 +44,6 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
         theme: "light",
         transition: Bounce,
       });
-
     }
   }
 
