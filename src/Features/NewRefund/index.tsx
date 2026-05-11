@@ -20,6 +20,33 @@ export function NewRefund() {
   const [receipt, setReceiptFile] = useState<File | null>(null)
   const navigate = useNavigate()
 
+  function validation() {
+    if (!title) {
+      console.log("Teste")
+    }
+
+    if (!category) {
+      console.log("Teste")
+    }
+
+    if (!value) {
+      console.log("Teste")
+    }
+
+    if (!title) {
+      console.log("Teste")
+    }
+
+    if (!title) {
+      console.log("Teste")
+    }
+
+    if (!title) {
+      console.log("Teste")
+    }
+
+  }
+
   const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
     const uploadResponse = await ApiReceipts.upload(receipt!)
     const receiptId = uploadResponse.data.receipt.id
@@ -120,5 +147,3 @@ export function NewRefund() {
     </form>
   )
 }
-
-
