@@ -1,9 +1,10 @@
 import { createContext } from "react";
-import { requests } from "../../utils/requests";
+import type { RefundType } from "../../Features/types/refundType";
 
 interface RefundContextProps {
-  refunds: typeof requests
-  deleteRefund: (id: string) => void
+  refunds: RefundType[] // pega a lista 
+  deleteRefund: (id: string) => Promise<void>
+  loadRefunds: () => Promise<void>
 }
 
 export const RefundContext = createContext({} as RefundContextProps) 

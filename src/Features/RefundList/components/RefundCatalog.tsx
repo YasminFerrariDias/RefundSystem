@@ -11,7 +11,7 @@ export function RefundCatalog() {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
   const { refunds } = useContext(RefundContext)
-
+  console.log("refunds:", refunds)
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
@@ -26,21 +26,28 @@ export function RefundCatalog() {
     setCurrentPage(currentPage - 1)
   }
 
+
   return (
     <>
       <div className="flex flex-col">
-        {page.map((refund) => (
-          <Request 
-            key={refund.id}
-            id={refund.id}
-            name={refund.name}
-            amount={refund.amount}
-            icon={refund.icon}
-            category={refund.category}
-            className={`hover:bg-gray-400`}
-            onClick={() => navigate(`/DetailsRefund/${refund.id}`)}
-          />
-        ))}
+        {refunds.length === 0 ? (
+          <Text textColor="green100" className=" flex justify-center">
+            Ainda não existe nenhuma solicitação de reembolso!
+          </Text>
+        ) : (
+          page.map((refund) => (
+            <Request
+              key={refund.id}
+              id={refund.id}
+              title={refund.title}
+              value={refund.value}
+              icon={refund.icon}
+              category={refund.category}
+              className={`hover:bg-gray-400`}
+              onClick={() => navigate(`/DetailsRefund/${refund.id}`)}
+            />
+          ))
+        )}
       </div>
 
       <div className="flex justify-center gap-3 items-center fixed bottom-39 left-0 right-0">
@@ -50,9 +57,9 @@ export function RefundCatalog() {
           icon={GrFormPrevious}
           iconColor="white"
         />
-        <Text size="md" textColor="gray200">{currentPage}/{numberOfPages}</Text>
+        <Text size="md" textColor="gray200">{numberOfPages === 0 ? "0/0" : `{currentPage}/{numberOfPages}`}</Text>
         <IconButton
-          disabled={currentPage === numberOfPages ? true : false}
+          disabled={currentPage === numberOfPages || currentPage != 0 ? true : false}
           onClick={nextPage}
           icon={MdNavigateNext}
           iconColor="white"
