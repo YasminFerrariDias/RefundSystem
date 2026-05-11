@@ -18,9 +18,9 @@ export function DetailsRefund() {
   const { id } = useParams()
   const { refund, isLoading, error } = useRefund(id)
 
-  if (isLoading) return <Text size="lg" decoration="bold" className="flex-1">Carregando...</Text>
-  if (error) return <Text size="lg" decoration="bold" className="flex-1">Erro ao carregar solicitação</Text>
-  if (!refund) return <Text size="lg" decoration="bold" className="flex-1">Solicitação não encontrada</Text>
+  if (isLoading) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Carregando...</Text>
+  if (error) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Erro ao carregar solicitação</Text>
+  if (!refund) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Solicitação não encontrada</Text>
 
   return (
     <div className="flex items-center justify-center">
@@ -30,12 +30,12 @@ export function DetailsRefund() {
           <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
         </header>
         <div className="flex flex-col gap-6">
-          <Input value={refund?.title} title="NOME DA SOLICITAÇÃO" readOnly />
+          <Input value={refund.title} title="NOME DA SOLICITAÇÃO" readOnly />
           <div className="flex gap-2">
             <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
             <Input title="VALOR" value={refund.value} className="w-38" readOnly />
           </div>
-          <PreviewFile text="Abrir comprovante" link={refund.receiptUrl} target="_blank" />
+          <PreviewFile text="Abrir comprovante" link={refund.receipt} target="_blank" />
           <div className="flex gap-2 m-0">
             <Link to='/'>
               <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />

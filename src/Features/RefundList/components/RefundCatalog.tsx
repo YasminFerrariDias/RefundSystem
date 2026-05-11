@@ -56,9 +56,9 @@ export function RefundCatalog() {
           icon={GrFormPrevious}
           iconColor="white"
         />
-        <Text size="md" textColor="gray200">{numberOfPages === 0 ? "0/0" : `{currentPage}/{numberOfPages}`}</Text>
+        <Text size="md" textColor="gray200">{numberOfPages === 0 ? "0/0" : `${currentPage}/${numberOfPages}`}</Text>
         <IconButton
-          disabled={currentPage === numberOfPages || currentPage != 0 ? true : false}
+          disabled={currentPage === numberOfPages || currentPage == 0 ? true : false}
           onClick={nextPage}
           icon={MdNavigateNext}
           iconColor="white"
