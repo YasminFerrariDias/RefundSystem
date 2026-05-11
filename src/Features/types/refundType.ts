@@ -10,3 +10,11 @@ export type RequesType = {
   className?: string 
   receiptUrl?: string
 }
+
+export interface RefundType {
+  id: string
+  title: string
+  category: string
+  value: number
+  receiptUrl: string
+}

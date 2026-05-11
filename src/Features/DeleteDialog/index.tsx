@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 
 interface DeleteDialogProps {
-  id: number
+  id: string
 }
 
 export function DeleteDialog({ id }: DeleteDialogProps) {

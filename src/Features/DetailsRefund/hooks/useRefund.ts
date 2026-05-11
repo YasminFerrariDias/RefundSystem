@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { ApiRefunds } from "../../../services/api"
+import type { RefundType } from "../../types/refundType"
 
-export const useRefund = (id: string) => {
-  const [ refund, setRefund ] = useState(null)
+export const useRefund = (id: string | undefined) => {
+  const [ refund, setRefund ] = useState<RefundType | null>(null)
   const [ isLoading, setIsLoading ] = useState(true)
   const [ error, setError ] = useState(null)
 
   useEffect(() => {
+    if (!id) return
+
     ApiRefunds.getOne(id)
       .then(response => {
         setRefund(response.data)
@@ -18,5 +21,5 @@ export const useRefund = (id: string) => {
       })
   }, [id])
 
-  return { refund, isLoading, error}
+  return { refund, isLoading, error }
 }
