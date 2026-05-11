@@ -11,12 +11,12 @@ import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { requests } from "../../utils/requests";
+import { ApiRefunds } from "../../services/api";
 
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
   const { id } = useParams()
-  const refund = requests.find(item => item.id === parseInt(id || "0"))
+  const refund = await ApiRefunds.getOne(id)
 
   return (
     <div className="flex items-center justify-center">

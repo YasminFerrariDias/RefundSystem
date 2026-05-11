@@ -8,5 +8,5 @@ export type RequesType = {
   amount: number
   onClick?: () => void 
   className?: string 
-  receiptUrl: string
+  receiptUrl?: string
 }

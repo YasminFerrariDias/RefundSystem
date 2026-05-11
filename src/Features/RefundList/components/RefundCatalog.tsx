@@ -30,7 +30,7 @@ export function RefundCatalog() {
     <>
       <div className="flex flex-col">
         {page.map((refund) => (
-          <Request
+          <Request 
             key={refund.id}
             id={refund.id}
             name={refund.name}
