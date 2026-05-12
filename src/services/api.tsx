@@ -18,7 +18,5 @@ export const ApiReceipts = {
   },
   getOne: (id: string) => api.get(`/receipts/${id}`),  
   delete: (id: string) => api.delete(`/receipts/${id}`), 
-  download: (id: string) => api.get(`/receipts/download/${id}`, {
-    responseType: "blob"
-  })
+  download: (id: string) => api.get(`/receipts/download/${id}`)
 }

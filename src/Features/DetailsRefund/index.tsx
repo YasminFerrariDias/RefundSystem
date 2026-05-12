@@ -21,7 +21,8 @@ export function DetailsRefund() {
   if (isLoading) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Carregando...</Text>
   if (error) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Erro ao carregar solicitação</Text>
   if (!refund) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Solicitação não encontrada</Text>
-
+console.log("Refund completo:", refund)
+console.log("Receipt ID:", refund.receipt?.id)
   return (
     <div className="flex items-center justify-center">
       <CardContainer size="md" >
@@ -35,7 +36,8 @@ export function DetailsRefund() {
             <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
             <Input title="VALOR" value={refund.value} className="w-38" readOnly />
           </div>
-          <PreviewFile text="Abrir comprovante" link={`http://localhost:3333/${refund.receipt?.path}`} target="_blank" />
+          <PreviewFile text="Abrir comprovante" receiptId={refund.receipt?.id} target="_blank" />
+          
           <div className="flex gap-2 m-0">
             <Link to='/'>
               <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
