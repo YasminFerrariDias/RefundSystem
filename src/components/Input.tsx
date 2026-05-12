@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 interface ComponentsProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string
@@ -5,8 +7,16 @@ interface ComponentsProps
 }
 
 export function Input({ placeholder, title, className, ...props }: ComponentsProps) {
+  const [value, setValue] = useState('')
+  
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+  }
+
+  console.log(value)
   return (
     <div className="flex flex-col gap-1 group">
+
       <label className={`
         text-sm transition-colors duration-200
         group-focus-within:text-green-100 text-[10px]
@@ -14,8 +24,11 @@ export function Input({ placeholder, title, className, ...props }: ComponentsPro
       `}>
         {title}
       </label>
+
       <input
         placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
         className={`
           ${className} 
           h-12 w-full rounded-lg p-4
