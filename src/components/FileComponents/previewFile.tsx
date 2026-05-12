@@ -3,6 +3,7 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 import cn from "classnames";
 import { ApiReceipts } from "../../services/api";
+import { Bounce, toast } from "react-toastify";
 
 interface PreviewFileProps {
   text: string
@@ -15,10 +16,27 @@ export function PreviewFile({ text, className, receiptId, target, ...props }: Pr
   async function handleDownload() {
     const response = await ApiReceipts.download(receiptId!)
 
-    const signedUrl = `http://localhost:3333${response.data.url}`
-    window.open(signedUrl, '_blank')
+    try {
+      const signedUrl = `http://localhost:3333${response.data.url}`
+      window.open(signedUrl, '_blank')
+      
+    } catch (error) {
+      console.log(error)
+
+      toast.error('Erro ao visualizar comprovante!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
   }
-  
+
   return (
     <div className={cn(`
       flex gap-1 justify-center flex-row

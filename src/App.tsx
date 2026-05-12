@@ -11,7 +11,7 @@ export function App() {
     <AppProvider>
       <div className="bg-gray-400 h-full" >
         <Toast />
-        <Routes> 
+        <Routes>
           <Route path='/' element={<RefundList />} />
           <Route path='/NewRefund' element={<NewRefund />} />
           <Route path='/RequestSent' element={<RequestSent />} />
