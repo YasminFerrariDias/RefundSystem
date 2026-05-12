@@ -4,7 +4,7 @@ import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Dialog, DialogTrigger } from "../../components/dialog";
 import { PreviewFile } from "../../components/FileComponents/previewFile";
 import { Input } from "../../components/Input";
-import { Select } from "../../components/Select/Select";
+import { Select } from "../SelectCategory/Select" 
 import { Text } from "../../components/Text/Text";
 import { DeleteDialog } from "../DeleteDialog";
 import { IconButton } from "../../components/Button/IconButton/IconButton";

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useToggle } from "./hooks/useToggle";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { categoryMapEnglish, categoryMapPortuguese } from "./types/categoryMap";
 
 interface SelectProps {
   title: string
@@ -15,14 +16,6 @@ interface SelectProps {
 export function Select({ title, className, disabled = false, value, onChange, readOnly, ...props }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
   const [optionSelect, setOptionSelect] = useState(value || "Selecione")
-
-  const categoryMap = {
-    "food": "Alimentação",
-    "hosting": "Hospedagem",
-    "transport": "Transporte",
-    "services": "Serviços",
-    "others": "Outros",
-  }
 
   function handleSelected(name: string) {
     setOptionSelect(name)
@@ -58,7 +51,7 @@ export function Select({ title, className, disabled = false, value, onChange, re
         onClick={disabled || readOnly ? undefined : toggle}
         tabIndex={disabled ? -1 : 0}
       >
-        <span>{optionSelect}</span>
+        <span>{categoryMapPortuguese[categoryMapEnglish.indexOf(optionSelect)] || "Selecione"}</span>
         <span className="flex items-center">{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </div>
 
@@ -69,18 +62,18 @@ export function Select({ title, className, disabled = false, value, onChange, re
         `}
       >
 
-        {Object.entries(categoryMap).map((category) => {
+        {categoryMapEnglish.map((englishValue, index) => {
           return (
-            <div key={category[0]} className={`
+            <div key={index} className={`
               p-1 cursor-pointer rounded 
-              ${optionSelect === category[0]
+              ${optionSelect === englishValue
                 ? 'font-semibold'
                 : 'font-normal'
               }`
             }
-              onClick={() => handleSelected(category[0])}
+              onClick={() => handleSelected(englishValue)}
             >
-              <span>{category[1]}</span>
+              <span>{categoryMapPortuguese[index]}</span>
             </div>
           )
         })}

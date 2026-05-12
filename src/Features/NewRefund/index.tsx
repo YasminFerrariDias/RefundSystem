@@ -4,7 +4,7 @@ import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonC
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { InputFile } from "../../components/FileComponents/InputFile";
 import { Input } from "../../components/Input";
-import { Select } from "../../components/Select/Select";
+import { Select } from "../SelectCategory/Select";
 import { Text } from "../../components/Text/Text";
 import { ApiReceipts, ApiRefunds } from "../../services/api";
 import type { RefundType } from "../types/refundType";

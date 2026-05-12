@@ -1,9 +1,8 @@
 import { PiForkKnifeFill, PiBuildingFill, PiCarFill, PiWrenchFill, PiPackageFill } from "react-icons/pi";
-
-
 import type { RefundType } from "../Features/types/refundType";
 import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
+import { categoryTranslation } from "../Features/SelectCategory/types/categoryMap";
 
 export function Request({ id, title, category, value, onClick, className, ...props }: RefundType) {
 
@@ -24,7 +23,7 @@ export function Request({ id, title, category, value, onClick, className, ...pro
       <div className="flex justify-between w-full">
         <div className="flex flex-col">
           <Text size="md" textColor="gray100" decoration="bold">{title}</Text>
-          <Text size="sm" textColor="gray200">{category}</Text>
+          <Text size="sm" textColor="gray200">{categoryTranslation[category]}</Text>
         </div>
         <div className="flex gap-1 items-end">
           <Text size="smLine" textColor="gray200" decoration="bodySm" className="pb-0.5">R$</Text>
