@@ -35,7 +35,7 @@ export function DetailsRefund() {
             <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
             <Input title="VALOR" value={refund.value} className="w-38" readOnly />
           </div>
-          <PreviewFile text="Abrir comprovante" link={refund.receipt} target="_blank" />
+          <PreviewFile text="Abrir comprovante" link={`http://localhost:3333/${refund.receipt?.path}`} target="_blank" />
           <div className="flex gap-2 m-0">
             <Link to='/'>
               <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
