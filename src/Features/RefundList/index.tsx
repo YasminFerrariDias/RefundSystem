@@ -6,6 +6,7 @@ import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
 import React, { useState } from "react";
 import { ApiRefunds } from "../../services/api";
+import { Bounce, toast } from "react-toastify";
 
 export function RefundList() {
   const [value, setValue] = useState('')
@@ -16,9 +17,26 @@ export function RefundList() {
   }
 
   async function handleSearch(value: string) {
-    const search = await ApiRefunds.getSearch(value)
+    try {
+      const search = await ApiRefunds.getSearch(value)
+      setSearchResults(search.data.refunds.dta)
+      
+    } catch (error) {
+      console.log(error)
 
-    setSearchResults(search.data.refunds.data)
+      toast.error('Erro ao executar a pesquisa!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    } 
   }
 
   return (

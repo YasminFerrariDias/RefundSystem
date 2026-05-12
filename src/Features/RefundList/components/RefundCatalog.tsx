@@ -13,17 +13,22 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
   const [currentPage, setCurrentPage] = useState(1)
   const { refunds, loadRefunds } = useContext(RefundContext)
 
-  const dataToShow = searchResults !== null ? searchResults : refunds
+  useEffect(() => {
+    loadRefunds()
+  }, [loadRefunds])
 
+  const dataToShow = searchResults !== null ? searchResults : refunds
+  if (!dataToShow) {
+    return<p>carregando...</p>
+  }
+  
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
   const page = dataToShow.slice(start, end);
   const numberOfPages = Math.ceil(dataToShow.length / itemsPerPage)
 
-  useEffect(() => {
-    loadRefunds()
-  }, [loadRefunds])
+
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
@@ -36,7 +41,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
   return (
     <>
       <div className="flex flex-col">
-        {refunds.length === 0 ? (
+        {dataToShow.length === 0 ? (
           <Text textColor="green100" className=" flex justify-center">
             Ainda não existe nenhuma solicitação de reembolso!
           </Text>
