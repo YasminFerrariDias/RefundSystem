@@ -18,7 +18,7 @@ export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
   const { register, handleSubmit, control, formState: { errors } } = useForm<RefundType>()
   const [receipt, setReceiptFile] = useState<File | null>(null)
-  const [submitted, setSubimitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
 
   function toastError(message: string) {
@@ -38,7 +38,7 @@ export function NewRefund() {
   }
 
   const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
-    setSubimitted(true)
+    setSubmitted(true) 
 
     if (!receipt) {
       toastError("Selecione um comprovante!")
@@ -138,11 +138,10 @@ export function NewRefund() {
             />
             {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
 
-            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white"
-              onClick={() => {
-                setSubimitted(true)
-                handleSubmit(onSubmit)()
-              }}
+            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" 
+              onClick={() => 
+                setSubmitted(true)
+              }
             />
           </div>
         </CardContainer>
