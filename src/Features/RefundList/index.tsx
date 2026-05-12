@@ -19,7 +19,7 @@ export function RefundList() {
   async function handleSearch(value: string) {
     try {
       const search = await ApiRefunds.getSearch(value)
-      setSearchResults(search.data.refunds.dta)
+      setSearchResults(search.data.refunds.data)
       
     } catch (error) {
       console.log(error)

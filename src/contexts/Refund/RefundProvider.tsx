@@ -3,6 +3,7 @@ import { RefundContext } from "./RefundContext";
 import type { RefundType } from "../../types/refundType";
 import { ApiRefunds } from "../../services/api";
 import { useCallback } from "react"
+import { Bounce, toast } from "react-toastify";
 
 interface RefundProviderProps {
   children: ReactNode
@@ -13,7 +14,25 @@ export function RefundProvider({ children }: RefundProviderProps) {
 
   const loadRefunds = useCallback(async () => {
     const response = await ApiRefunds.getAll()
-    setRefunds(response.data.refunds.data)
+
+    try {
+      setRefunds(response.data.refuds.data)
+
+    } catch (error) {
+      console.log(error)
+
+      toast.error('Erro ao buscar as solicitações!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
   }, [])
 
   const deleteRefund = async (id: string) => {
