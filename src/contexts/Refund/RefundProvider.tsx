@@ -1,8 +1,8 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-import { useEffect, useState, type ReactNode  } from "react";
+import { useState, type ReactNode  } from "react";
 import { RefundContext } from "./RefundContext";
 import type { RefundType } from "../../Features/types/refundType";
 import { ApiRefunds } from "../../services/api";
+import { useCallback } from "react"
 
 interface RefundProviderProps {
   children: ReactNode
@@ -11,19 +11,15 @@ interface RefundProviderProps {
 export function RefundProvider({ children }: RefundProviderProps) {
   const [refunds, setRefunds] = useState<RefundType[]>([])
 
-  const loadRefunds = async () => {
+  const loadRefunds = useCallback(async () => {
     const response = await ApiRefunds.getAll()
     setRefunds(response.data.refunds.data)
-  }
+  }, [])
 
   const deleteRefund = async (id: string) => {
     await ApiRefunds.deleteRefund(id)
     await loadRefunds()
   }
-
-  useEffect(() => {
-    loadRefunds()
-  }, [])
 
   return (
     <RefundContext.Provider value={{ refunds, deleteRefund, loadRefunds }}>

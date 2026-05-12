@@ -20,7 +20,7 @@ export function RefundCatalog() {
 
   useEffect(() => {
     loadRefunds()
-  }, [loadRefunds, refunds])
+  }, [loadRefunds])
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
