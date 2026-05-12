@@ -21,8 +21,7 @@ export function DetailsRefund() {
   if (isLoading) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Carregando...</Text>
   if (error) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Erro ao carregar solicitação</Text>
   if (!refund) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Solicitação não encontrada</Text>
-console.log("Refund completo:", refund)
-console.log("Receipt ID:", refund.receipt?.id)
+
   return (
     <div className="flex items-center justify-center">
       <CardContainer size="md" >

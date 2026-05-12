@@ -6,17 +6,20 @@ import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RefundContext } from "../../../contexts/Refund/RefundContext";
+import type { RefundType } from "../../../types/refundType";
 
-export function RefundCatalog() {
+export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
   const { refunds, loadRefunds } = useContext(RefundContext)
 
+  const dataToShow = searchResults !== null ? searchResults : refunds
+
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
-  const page = refunds.slice(start, end);
-  const numberOfPages = Math.ceil(refunds.length / itemsPerPage)
+  const page = dataToShow.slice(start, end);
+  const numberOfPages = Math.ceil(dataToShow.length / itemsPerPage)
 
   useEffect(() => {
     loadRefunds()

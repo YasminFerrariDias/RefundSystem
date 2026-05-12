@@ -5,12 +5,20 @@ import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
 import React, { useState } from "react";
+import { ApiRefunds } from "../../services/api";
 
 export function RefundList() {
   const [value, setValue] = useState('')
+  const [searchResults, setSearchResults] = useState(null)
 
   const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
+  }
+
+  async function handleSearch(value: string) {
+    const search = await ApiRefunds.getSearch(value)
+
+    setSearchResults(search.data.refunds.data)
   }
 
   return (
@@ -30,13 +38,13 @@ export function RefundList() {
             <IconButton
               icon={CiSearch}
               iconColor="white"
-              onClick={() => console.log("teste", value)}
+              onClick={() => handleSearch(value)}
             />
           </div>
         </div>
         <hr className="text-gray-400" />
         <div>
-          <RefundCatalog />
+          <RefundCatalog searchResults={searchResults} />
         </div>
       </div>
     </CardContainer>
