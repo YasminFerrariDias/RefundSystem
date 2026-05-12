@@ -16,38 +16,35 @@ import { Bounce, toast } from "react-toastify";
 
 export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
-  const { register, handleSubmit, control } = useForm<RefundType>()
+  const { register, handleSubmit, control, formState: { errors } } = useForm<RefundType>()
   const [receipt, setReceiptFile] = useState<File | null>(null)
+  const [submitted, setSubimitted] = useState(false)
   const navigate = useNavigate()
 
-  function validation() {
-    if (!title) {
-      console.log("Teste")
-    }
-
-    if (!category) {
-      console.log("Teste")
-    }
-
-    if (!value) {
-      console.log("Teste")
-    }
-
-    if (!title) {
-      console.log("Teste")
-    }
-
-    if (!title) {
-      console.log("Teste")
-    }
-
-    if (!title) {
-      console.log("Teste")
-    }
-
+  function toastError(message: string) {
+    return (
+      toast.error(message, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      })
+    )
   }
 
   const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
+    setSubimitted(true)
+
+    if (!receipt) {
+      toastError("Selecione um comprovante!")
+      return
+    }
+
     const uploadResponse = await ApiReceipts.upload(receipt!)
     const receiptId = uploadResponse.data.receipt.id
 
@@ -76,18 +73,8 @@ export function NewRefund() {
       navigate("/")
     } catch (error) {
       console.log(error)
-      
-      toast.error('Erro ao cadastrar!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+
+      toastError("Erro ao cadastrar!")
     }
   }
 
@@ -105,23 +92,33 @@ export function NewRefund() {
           </header>
 
           <div className="flex flex-col gap-6">
-            <Input title="NOME DA SOLICITAÇÃO" {...register("title")} />
+            <div>
+              <Input title="NOME DA SOLICITAÇÃO" {...register("title", { required: "Campo obrigatório!" })} />
+              {errors.title && <span className="text-green-200 text-sm -mt-05">{errors.title.message}</span>}
+            </div>
 
             <div className="flex gap-2">
-              <Controller
-                name="category"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    title="CATEGORIA"
-                    className="w-full"
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
+              <div>
+                <Controller
+                  name="category"
+                  control={control}
+                  rules={{ required: "Selecione uma categoria!" }}
+                  render={({ field }) => (
+                    <Select
+                      title="CATEGORIA"
+                      className="w-80"
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                {errors.category && <span className="text-green-200 text-sm">{errors.category.message}</span>}
+              </div>
 
-              <Input title="VALOR" placeholder="0,00" className="w-38" {...register("value", { valueAsNumber: true })} />
+              <div>
+                <Input title="VALOR" placeholder="0,00" className="w-38" {...register("value", { valueAsNumber: true, required: "Obrigatório!" })} />
+                {errors.value && <span className="text-green-200 text-sm">{errors.value.message}</span>}
+              </div>
             </div>
 
             <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG"
@@ -139,8 +136,14 @@ export function NewRefund() {
                 handleFileChange()
               })}
             />
+            {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
 
-            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
+            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white"
+              onClick={() => {
+                setSubimitted(true)
+                handleSubmit(onSubmit)()
+              }}
+            />
           </div>
         </CardContainer>
       </div>
