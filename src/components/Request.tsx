@@ -18,7 +18,7 @@ export function Request({ id, title, category, value, onClick, className, ...pro
     <div className={`flex items-center gap-3 p-2.5 w-full rounded-lg ${className}`}
       key={id} onClick={onClick} {...props}
     >
-      <div className="bg-gray-400 w-8.5 h-8.5 rounded-full justify-center items-center flex ">
+      <div className="bg-gray-400 w-10 h-10 rounded-[50%] justify-center items-center flex ">
         <Icon icon={IconComponent} size="sm" iconColor="green100" />
       </div>
       <div className="flex justify-between w-full">

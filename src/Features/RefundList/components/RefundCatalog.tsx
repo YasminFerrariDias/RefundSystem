@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Request } from "../../../components/Request"
 import { Text } from "../../../components/Text/Text";
 import { IconButton } from "../../../components/Button/IconButton/IconButton";
@@ -10,13 +10,17 @@ import { RefundContext } from "../../../contexts/Refund/RefundContext";
 export function RefundCatalog() {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
-  const { refunds } = useContext(RefundContext)
-  console.log("refunds:", refunds)
+  const { refunds, loadRefunds } = useContext(RefundContext)
+
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
   const page = refunds.slice(start, end);
   const numberOfPages = Math.ceil(refunds.length / itemsPerPage)
+
+  useEffect(() => {
+    loadRefunds()
+  }, [loadRefunds, refunds])
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
