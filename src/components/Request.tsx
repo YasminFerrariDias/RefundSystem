@@ -1,5 +1,5 @@
 import { PiForkKnifeFill, PiBuildingFill, PiCarFill, PiWrenchFill, PiPackageFill } from "react-icons/pi";
-import type { RefundType } from "../Features/types/refundType";
+import type { RefundType } from "../types/refundType";
 import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
 import { categoryTranslation } from "../Features/SelectCategory/types/categoryMap";

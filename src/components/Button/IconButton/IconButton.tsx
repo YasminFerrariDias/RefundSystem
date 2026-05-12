@@ -8,14 +8,16 @@ interface IconButtonProps
   React.ComponentProps<"button"> {
   as?: keyof React.JSX.IntrinsicElements
 
+  onChange?: () => Event
   icon: React.ElementType
   iconColor?: "white" | "green100"
 }
 
-export function IconButton({ as = "button", buttonColor, icon, iconColor, className, ...props }: IconButtonProps) {
+export function IconButton({ as = "button", buttonColor, icon, iconColor, className, onChange, ...props }: IconButtonProps) {
   return React.createElement(
     as,
     {
+      onChange,
       className: iconButtonVariant({ buttonColor, className }),
       ...props
     },

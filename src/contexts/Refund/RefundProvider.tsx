@@ -1,6 +1,6 @@
-import { useState, type ReactNode  } from "react";
+import { useState, type ReactNode } from "react";
 import { RefundContext } from "./RefundContext";
-import type { RefundType } from "../../Features/types/refundType";
+import type { RefundType } from "../../types/refundType";
 import { ApiRefunds } from "../../services/api";
 import { useCallback } from "react"
 

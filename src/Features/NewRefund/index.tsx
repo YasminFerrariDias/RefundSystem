@@ -7,7 +7,7 @@ import { Input } from "../../components/Input";
 import { Select } from "../SelectCategory/Select";
 import { Text } from "../../components/Text/Text";
 import { ApiReceipts, ApiRefunds } from "../../services/api";
-import type { RefundType } from "../types/refundType";
+import type { RefundType } from "../../types/refundType";
 import { useSelectedFile } from "./hooks/useSelectedFile";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
@@ -38,7 +38,7 @@ export function NewRefund() {
   }
 
   const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
-    setSubmitted(true) 
+    setSubmitted(true)
 
     if (!receipt) {
       toastError("Selecione um comprovante!")
@@ -138,8 +138,8 @@ export function NewRefund() {
             />
             {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
 
-            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" 
-              onClick={() => 
+            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit"
+              onClick={() =>
                 setSubmitted(true)
               }
             />

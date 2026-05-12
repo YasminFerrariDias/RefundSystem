@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { ApiRefunds } from "../../../services/api"
-import type { RefundType } from "../../types/refundType"
+import type { RefundType } from "../../../types/refundType"
 
 export const useRefund = (id: string | undefined) => {
   const [refund, setRefund] = useState<RefundType | null>(null)

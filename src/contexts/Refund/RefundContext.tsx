@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { RefundType } from "../../Features/types/refundType";
+import type { RefundType } from "../../types/refundType";
 
 interface RefundContextProps {
   refunds: RefundType[] // pega a lista 
