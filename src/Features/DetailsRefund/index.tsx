@@ -29,38 +29,42 @@ export function DetailsRefund() {
     }
   }, [error, navigate])
 
-  if (isLoading) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Carregando...</Text>
-
-  if (!refund) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Solicitação não encontrada</Text>
-
   return (
     <div className="flex items-center justify-center">
-      <CardContainer size="md" >
-        <header className="mb-10 gap-2 flex flex-col">
-          <Text size="lg" decoration="bold" className="flex-1">Solicitação de reembolso</Text>
-          <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
-        </header>
-        <div className="flex flex-col gap-6">
-          <Input value={refund.title} title="NOME DA SOLICITAÇÃO" readOnly />
-          <div className="flex gap-2">
-            <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
-            <Input title="VALOR" value={refund.value} className="w-38" readOnly />
-          </div>
-          <PreviewFile text="Abrir comprovante" receiptId={refund.receipt?.id} target="_blank" />
+      <CardContainer size="md">
+        {isLoading ? (
+          <p className="flex items-center justify-center">Carregando...</p> 
+        ) : !refund ? (
+          undefined
+        ) : (
+          <>
+            <header className="mb-10 gap-2 flex flex-col">
+              <Text size="lg" decoration="bold" className="flex-1">Solicitação de reembolso</Text>
+              <Text size="md" decoration="regular" className="flex-1">Dados da despesa para solicitar reembolso</Text>
+            </header>
+            <div className="flex flex-col gap-6">
+              <Input value={refund.title} title="NOME DA SOLICITAÇÃO" readOnly />
+              <div className="flex gap-2">
+                <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
+                <Input title="VALOR" value={refund.value} className="w-38" readOnly />
+              </div>
+              <PreviewFile text="Abrir comprovante" receiptId={refund.receipt?.id} target="_blank" />
 
-          <div className="flex gap-2 m-0">
-            <Link to='/'>
-              <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
-            </Link>
+              <div className="flex gap-2 m-0">
+                <Link to='/'>
+                  <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
+                </Link>
 
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
-              </DialogTrigger>
-              <DeleteDialog id={refund.id} />
-            </Dialog>
-          </div>
-        </div>
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger asChild>
+                    <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />
+                  </DialogTrigger>
+                  <DeleteDialog id={refund.id} />
+                </Dialog>
+              </div>
+            </div>
+          </>
+        )}
       </CardContainer>
     </div>
   )

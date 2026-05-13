@@ -7,7 +7,7 @@ export const useRefund = (id: string | undefined) => {
     queryKey: ['refund', id],
     queryFn: async () => {
       if (!id) return null
-      const response = await ApiRefunds.getOne(d)
+      const response = await ApiRefunds.getOne(id)
       return response.data.refund
     }
   })
