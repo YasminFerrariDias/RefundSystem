@@ -3,7 +3,7 @@ import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonC
 import { DialogClose, DialogContent, DialogFooter, DialogHeader } from "../../components/dialog";
 import { RefundContext } from "../../contexts/Refund/RefundContext";
 import { useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { ToastError, ToastSuccess } from "../../components/Toast";
 
 interface DeleteDialogProps {
   id: string
@@ -17,33 +17,13 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
     try {
       deleteRefund(id)
 
-      toast.success('Excluído com sucesso!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      ToastSuccess('Excluído com sucesso!')
 
       navigate("/")
     } catch (error) {
       console.log(error)
       
-      toast.error('Erro ao excluir!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      ToastError('Erro ao excluir!')
     }
   }
 

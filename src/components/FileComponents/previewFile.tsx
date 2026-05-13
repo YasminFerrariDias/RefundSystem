@@ -3,7 +3,7 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 import cn from "classnames";
 import { ApiReceipts } from "../../services/api";
-import { Bounce, toast } from "react-toastify";
+import { ToastError } from "../Toast";
 
 interface PreviewFileProps {
   text: string
@@ -23,17 +23,7 @@ export function PreviewFile({ text, className, receiptId, target, ...props }: Pr
     } catch (error) {
       console.log(error)
 
-      toast.error('Erro ao visualizar comprovante!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      ToastError('Erro ao visualizar comprovante!');
     }
   }
 

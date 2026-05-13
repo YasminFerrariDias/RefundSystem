@@ -6,7 +6,7 @@ import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
 import React, { useState } from "react";
 import { ApiRefunds } from "../../services/api";
-import { Bounce, toast } from "react-toastify";
+import { ToastError } from "../../components/Toast";
 
 export function RefundList() {
   const [value, setValue] = useState('')
@@ -24,17 +24,7 @@ export function RefundList() {
     } catch (error) {
       console.log(error)
 
-      toast.error('Erro ao executar a pesquisa!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      ToastError('Erro ao executar a pesquisa!')
       return;
     } 
   }

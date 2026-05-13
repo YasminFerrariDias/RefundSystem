@@ -3,7 +3,7 @@ import { RefundContext } from "./RefundContext";
 import type { RefundType } from "../../types/refundType";
 import { ApiRefunds } from "../../services/api";
 import { useCallback } from "react"
-import { Bounce, toast } from "react-toastify";
+import { ToastError } from "../../components/Toast";
 
 interface RefundProviderProps {
   children: ReactNode
@@ -21,17 +21,7 @@ export function RefundProvider({ children }: RefundProviderProps) {
     } catch (error) {
       console.log(error)
 
-      toast.error('Erro ao buscar as solicitações!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      ToastError('Erro ao buscar as solicitações!')
     }
   }, [])
 

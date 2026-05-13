@@ -12,7 +12,7 @@ import { useSelectedFile } from "./hooks/useSelectedFile";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { ToastError, ToastSuccess } from "../../components/Toast";
 
 export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
@@ -21,27 +21,11 @@ export function NewRefund() {
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
 
-  function toastError(message: string) {
-    return (
-      toast.error(message, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      })
-    )
-  }
-
   const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
     setSubmitted(true)
 
     if (!receipt) {
-      toastError("Selecione um comprovante!")
+      ToastError("Selecione um comprovante!")
       return
     }
 
@@ -59,28 +43,18 @@ export function NewRefund() {
       try {
         await ApiRefunds.postCreate(refundData)
 
-        toast.success('Cadastrado com sucesso!', {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        ToastSuccess('Cadastrado com sucesso!')
 
         navigate("/")
       } catch (error) {
         console.log(error)
 
-        toastError("Erro ao cadastrar!")
+        ToastError("Erro ao cadastrar!")
       }
     } catch (error) {
       console.log("error", error)
 
-      toastError("Erro ao processar o comprovante!")
+      ToastError("Erro ao processar o comprovante!")
     }
   }
 
