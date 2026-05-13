@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Request } from "../../../components/Request"
 import { Text } from "../../../components/Text/Text";
 import { IconButton } from "../../../components/Button/IconButton/IconButton";
@@ -11,11 +11,7 @@ import type { RefundType } from "../../../types/refundType";
 export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
-  const { refunds, loadRefunds } = useContext(RefundContext)
-
-  useEffect(() => {
-    loadRefunds()
-  }, [loadRefunds])
+  const { refunds } = useContext(RefundContext)
 
   const dataToShow = searchResults !== null ? searchResults : refunds
   if (!dataToShow) {

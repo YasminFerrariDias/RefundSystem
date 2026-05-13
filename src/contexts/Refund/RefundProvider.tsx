@@ -1,37 +1,31 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { RefundContext } from "./RefundContext";
-import type { RefundType } from "../../types/refundType";
 import { ApiRefunds } from "../../services/api";
-import { useCallback } from "react"
-import { ToastError } from "../../components/Toast";
+import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../../lib/react-query";
 
 interface RefundProviderProps {
   children: ReactNode
 }
 
 export function RefundProvider({ children }: RefundProviderProps) {
-  const [refunds, setRefunds] = useState<RefundType[]>([])
-
-  const loadRefunds = useCallback(async () => {
-    const response = await ApiRefunds.getAll()
-
-    try {
-      setRefunds(response.data.refunds.data)
-
-    } catch (error) {
-      console.log(error)
-
-      ToastError('Erro ao buscar as solicitações!')
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['refunds'],
+    queryFn: async () => {
+      const response = await ApiRefunds.getAll()
+      return response.data.refunds.data
     }
-  }, [])
+  })
+
+  const refunds = data || []
 
   const deleteRefund = async (id: string) => {
     await ApiRefunds.deleteRefund(id)
-    await loadRefunds()
+    await queryClient.invalidateQueries({ queryKey: ['refunds'] })
   }
 
   return (
-    <RefundContext.Provider value={{ refunds, deleteRefund, loadRefunds }}>
+    <RefundContext.Provider value={{ refunds, deleteRefund, isLoading, error }}>
       {children}
     </RefundContext.Provider>
   )
