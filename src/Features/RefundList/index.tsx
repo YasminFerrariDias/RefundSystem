@@ -4,28 +4,16 @@ import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
-import React, { useState } from "react";
-import { ApiRefunds } from "../../services/api";
-import { ToastError } from "../../components/Toast";
-import { useMutation } from "@tanstack/react-query";
+import React, { useContext, useState } from "react";
+import { RefundContext } from "../../contexts/Refund/RefundContext";
 
 export function RefundList() {
   const [value, setValue] = useState('')
-  const [searchResults, setSearchResults] = useState(null)
+  const { searchResults, searchRefunds } = useContext(RefundContext)
 
   const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
-
-  const { mutate } = useMutation({
-    mutationFn: async (value: string) => await ApiRefunds.getSearch(value),
-    onSuccess: (search) => {
-      setSearchResults(search.data.refunds.data)
-    },
-    onError: () => {
-      ToastError('Erro ao executar a pesquisa!')
-    }
-  })
 
   return (
     <CardContainer>
@@ -44,7 +32,7 @@ export function RefundList() {
             <IconButton
               icon={CiSearch}
               iconColor="white"
-              onClick={() => mutate(value)}
+              onClick={() => searchRefunds(value)}
             />
           </div>
         </div>

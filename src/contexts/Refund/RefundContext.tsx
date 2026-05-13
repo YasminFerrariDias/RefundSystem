@@ -7,6 +7,8 @@ interface RefundContextProps {
   isLoading: boolean
   error: Error | null 
   refetch: () => void
+  searchResults: RefundType[] | null
+  searchRefunds: (value: string) => void
 }
 
 export const RefundContext = createContext({} as RefundContextProps) 
