@@ -1,4 +1,8 @@
-import { Bounce, toast } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+
+export function Toast() {
+  return <ToastContainer position='bottom-right' theme='light' />
+}
 
 export function ToastError(message: string) {
   toast.error(message, {
