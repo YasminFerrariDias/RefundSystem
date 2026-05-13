@@ -54,7 +54,7 @@ export function DetailsRefund() {
                 <Link to='/'>
                   <IconButton icon={FaArrowLeft} buttonColor="green200" className="text-white -mt-px" />
                 </Link>
-
+ 
                 <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger asChild>
                     <ButtonContainer text="Excluir" size="full" className="w-full" textColor="white" />

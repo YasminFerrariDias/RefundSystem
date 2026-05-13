@@ -30,15 +30,10 @@ export function RefundProvider({ children }: RefundProviderProps) {
     }
   })
 
-  const refunds = data || []
-
-  const deleteRefund = async (id: string) => {
-    await ApiRefunds.deleteRefund(id)
-    await refetch()
-  }
+  const refunds = data || [] 
 
   return (
-    <RefundContext.Provider value={{ refunds, deleteRefund, isLoading, error, refetch, searchResults, searchRefunds: mutate }}>
+    <RefundContext.Provider value={{ refunds, isLoading, error, refetch, searchResults, searchRefunds: mutate }}>
       {children}
     </RefundContext.Provider>
   )

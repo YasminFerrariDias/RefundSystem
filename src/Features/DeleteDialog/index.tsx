@@ -1,23 +1,23 @@
-import { useContext } from "react";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { DialogClose, DialogContent, DialogFooter, DialogHeader } from "../../components/dialog";
-import { RefundContext } from "../../contexts/Refund/RefundContext";
 import { useNavigate } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../components/Toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ApiRefunds } from "../../services/api";
 
 interface DeleteDialogProps {
   id: string
 }
 
 export function DeleteDialog({ id }: DeleteDialogProps) {
+  const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { deleteRefund } = useContext(RefundContext)
 
   const { mutate } = useMutation({
-    mutationFn: (id: string) => deleteRefund(id),
+    mutationFn: (id: string) => ApiRefunds.deleteRefund(id),
     onSuccess: () => {
       ToastSuccess('Excluído com sucesso!')
+      queryClient.invalidateQueries({ queryKey: ['refunds'] })
       navigate("/")
     },
     onError: () => {
