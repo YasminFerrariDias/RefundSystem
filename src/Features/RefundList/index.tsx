@@ -7,6 +7,7 @@ import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalo
 import React, { useState } from "react";
 import { ApiRefunds } from "../../services/api";
 import { ToastError } from "../../components/Toast";
+import { useMutation } from "@tanstack/react-query";
 
 export function RefundList() {
   const [value, setValue] = useState('')
@@ -16,19 +17,15 @@ export function RefundList() {
     setValue(event.target.value)
   }
 
-  async function handleSearch(value: string) {
-
-    try {
-      const search = await ApiRefunds.getSearch(value)
+  const { mutate } = useMutation({
+    mutationFn: async (value: string) => await ApiRefunds.getSearch(value),
+    onSuccess: (search) => {
       setSearchResults(search.data.refunds.data)
-      
-    } catch (error) {
-      console.log(error)
-
+    },
+    onError: () => {
       ToastError('Erro ao executar a pesquisa!')
-      return;
-    } 
-  }
+    }
+  })
 
   return (
     <CardContainer>
@@ -47,7 +44,7 @@ export function RefundList() {
             <IconButton
               icon={CiSearch}
               iconColor="white"
-              onClick={() => handleSearch(value)}
+              onClick={() => mutate(value)}
             />
           </div>
         </div>
