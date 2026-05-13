@@ -11,7 +11,8 @@ import type { RefundType } from "../../../types/refundType";
 export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
-  const { refunds } = useContext(RefundContext)
+const { refunds } = useContext(RefundContext)
+console.log("RefundCatalog renderizou, refunds:", refunds)  // ← veja se muda
 
   const dataToShow = searchResults !== null ? searchResults : refunds
   if (!dataToShow) {

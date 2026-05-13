@@ -11,7 +11,6 @@ export function RefundProvider({ children }: RefundProviderProps) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['refunds'],
     queryFn: async () => {
-        console.log("🔄 Buscando refunds do backend...")
       const response = await ApiRefunds.getAll()
       return response.data.refunds.data
     }
