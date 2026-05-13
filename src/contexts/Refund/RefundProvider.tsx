@@ -16,7 +16,7 @@ export function RefundProvider({ children }: RefundProviderProps) {
     const response = await ApiRefunds.getAll()
 
     try {
-      setRefunds(response.data.refuds.data)
+      setRefunds(response.data.refunds.data)
 
     } catch (error) {
       console.log(error)

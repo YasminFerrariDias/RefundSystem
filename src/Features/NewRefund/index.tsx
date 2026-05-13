@@ -45,36 +45,42 @@ export function NewRefund() {
       return
     }
 
-    const uploadResponse = await ApiReceipts.upload(receipt!)
-    const receiptId = uploadResponse.data.receipt.id
-
-    const refundData = {
-      title: data.title,
-      category: data.category,
-      value: data.value,
-      receipt: receiptId
-    }
-
     try {
-      await ApiRefunds.postCreate(refundData)
+      const uploadResponse = await ApiReceipts.upload(receipt!)
+      const receiptId = uploadResponse.data.receipt.id
 
-      toast.success('Cadastrado com sucesso!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      const refundData = {
+        title: data.title,
+        category: data.category,
+        value: data.value,
+        receipt: receiptId
+      }
 
-      navigate("/")
+      try {
+        await ApiRefunds.postCreate(refundData)
+
+        toast.success('Cadastrado com sucesso!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+
+        navigate("/")
+      } catch (error) {
+        console.log(error)
+
+        toastError("Erro ao cadastrar!")
+      }
     } catch (error) {
-      console.log(error)
+      console.log("error", error)
 
-      toastError("Erro ao cadastrar!")
+      toastError("Erro ao processar o comprovante!")
     }
   }
 
