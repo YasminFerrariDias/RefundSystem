@@ -13,6 +13,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../components/Toast";
+import { useMutation, useQueryClient  } from "@tanstack/react-query";
 
 export function NewRefund() {
   const { hasFile, setHasFile } = useSelectedFile()
@@ -20,8 +21,31 @@ export function NewRefund() {
   const [receipt, setReceiptFile] = useState<File | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
-  const onSubmit: SubmitHandler<RefundType> = async (data: RefundType) => {
+  function handleFileChange() {
+    setHasFile(true)
+  }
+
+  const { mutate } = useMutation({
+    mutationFn: async (formData: RefundType) => {
+      const uploadResponse = await ApiReceipts.upload(receipt!)
+      const receipID = uploadResponse.data.receipt.id
+      const refundDatas = { ...formData, receipt: receipID }
+
+      return await ApiRefunds.postCreate(refundDatas)
+    },
+    onSuccess: () => {
+      ToastSuccess('Cadastrado com sucesso!')
+      queryClient.invalidateQueries({ queryKey: ['refunds'] })
+      navigate("/")
+    },
+    onError: () => {
+      ToastError("Erro ao processar o comprovante!")
+    }
+  })
+
+  const onSubmit: SubmitHandler<RefundType> = (data: RefundType) => {
     setSubmitted(true)
 
     if (!receipt) {
@@ -29,37 +53,7 @@ export function NewRefund() {
       return
     }
 
-    try {
-      const uploadResponse = await ApiReceipts.upload(receipt!)
-      const receiptId = uploadResponse.data.receipt.id
-
-      const refundData = {
-        title: data.title,
-        category: data.category,
-        value: data.value,
-        receipt: receiptId
-      }
-
-      try {
-        await ApiRefunds.postCreate(refundData)
-
-        ToastSuccess('Cadastrado com sucesso!')
-
-        navigate("/")
-      } catch (error) {
-        console.log(error)
-
-        ToastError("Erro ao cadastrar!")
-      }
-    } catch (error) {
-      console.log("error", error)
-
-      ToastError("Erro ao processar o comprovante!")
-    }
-  }
-
-  function handleFileChange() {
-    setHasFile(true)
+    mutate(data)
   }
 
   return (
@@ -118,11 +112,7 @@ export function NewRefund() {
             />
             {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
 
-            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit"
-              onClick={() =>
-                setSubmitted(true)
-              }
-            />
+            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
           </div>
         </CardContainer>
       </div>
