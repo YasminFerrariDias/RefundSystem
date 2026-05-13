@@ -5,7 +5,8 @@ interface RefundContextProps {
   refunds: RefundType[] // pega a lista 
   deleteRefund: (id: string) => Promise<void>
   isLoading: boolean
-  error: Error | null
+  error: Error | null 
+  refetch: () => void
 }
 
 export const RefundContext = createContext({} as RefundContextProps) 

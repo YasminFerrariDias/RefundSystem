@@ -24,8 +24,6 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
   const page = dataToShow.slice(start, end);
   const numberOfPages = Math.ceil(dataToShow.length / itemsPerPage)
 
-
-
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
   }
