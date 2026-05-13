@@ -1,4 +1,4 @@
-export const categoryMapEnglish = ["food", "hosting", "transport", "services", "others"]
+export const categoryMapEnglish = ["food", "hosting", "transport", "services", "other"]
 export const categoryMapPortuguese = ["Alimentação", "Hospedagem", "Transporte", "Serviços", "Outros"]
 
 export const categoryTranslation: Record<string, string> = {
@@ -6,5 +6,5 @@ export const categoryTranslation: Record<string, string> = {
   hosting: "Hospedagem",
   transport: "Transporte",
   services: "Serviços",
-  others: "Outros"
+  other: "Outros"
 }
