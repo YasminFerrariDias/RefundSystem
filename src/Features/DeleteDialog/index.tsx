@@ -4,6 +4,7 @@ import { DialogClose, DialogContent, DialogFooter, DialogHeader } from "../../co
 import { RefundContext } from "../../contexts/Refund/RefundContext";
 import { useNavigate } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../components/Toast";
+import { useMutation } from "@tanstack/react-query";
 
 interface DeleteDialogProps {
   id: string
@@ -13,19 +14,16 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
   const navigate = useNavigate()
   const { deleteRefund } = useContext(RefundContext)
 
-  function handleConfirm() {
-    try {
-      deleteRefund(id)
-
+  const { mutate } = useMutation({
+    mutationFn: (id: string) => deleteRefund(id),
+    onSuccess: () => {
       ToastSuccess('Excluído com sucesso!')
-
       navigate("/")
-    } catch (error) {
-      console.log(error)
-      
+    },
+    onError: () => {
       ToastError('Erro ao excluir!')
     }
-  }
+  })
 
   return (
     <DialogContent>
@@ -47,7 +45,7 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
           text="Confirmar"
           size="fit"
           textColor="white"
-          onClick={handleConfirm}
+          onClick={() => mutate(id)}
         />
       </DialogFooter>
     </DialogContent>
