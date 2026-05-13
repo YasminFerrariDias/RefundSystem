@@ -16,7 +16,9 @@ import { useRefund } from "./hooks/useRefund";
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
   const { id } = useParams()
-  const { refund, isLoading, error } = useRefund(id)
+  const { data, /*refetch,*/ isLoading, error } = useRefund(id)
+
+  const refund = data || []
 
   if (isLoading) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Carregando...</Text>
   if (error) return <Text size="lg" decoration="bold" className="flex-1 flex justify-center items-center">Erro ao carregar solicitação</Text>
