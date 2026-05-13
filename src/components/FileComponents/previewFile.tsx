@@ -14,12 +14,16 @@ interface PreviewFileProps {
 
 export function PreviewFile({ text, className, receiptId, target, ...props }: PreviewFileProps) {
   async function handleDownload() {
+
+
+
+
     const response = await ApiReceipts.download(receiptId!)
 
     try {
       const signedUrl = `http://localhost:3333${response.data.url}`
       window.open(signedUrl, '_blank')
-      
+
     } catch (error) {
       console.log(error)
 

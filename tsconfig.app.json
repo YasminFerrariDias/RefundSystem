@@ -26,5 +26,5 @@
     "dialog/dialog.tsx",
     "dialog/refund-edit-dialog.tsx",
     "dialog/refund-new-dialog.tsx"
-  ]
+  ], 
 }
