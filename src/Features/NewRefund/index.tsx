@@ -8,7 +8,6 @@ import { Select } from "../SelectCategory/Select";
 import { Text } from "../../components/Text/Text";
 import { ApiReceipts, ApiRefunds } from "../../services/api";
 import type { RefundType } from "../../types/refundType";
-import { useSelectedFile } from "./hooks/useSelectedFile";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
@@ -16,16 +15,11 @@ import { ToastError, ToastSuccess } from "../../components/Toast";
 import { useMutation, useQueryClient  } from "@tanstack/react-query";
 
 export function NewRefund() {
-  const { hasFile, setHasFile } = useSelectedFile()
   const { register, handleSubmit, control, formState: { errors } } = useForm<RefundType>()
   const [receipt, setReceiptFile] = useState<File | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
   const queryClient = useQueryClient()
-
-  function handleFileChange() {
-    setHasFile(true)
-  }
 
   const { mutate } = useMutation({
     mutationFn: async (formData: RefundType) => {
@@ -97,7 +91,7 @@ export function NewRefund() {
 
             <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG"
               className={
-                hasFile
+                receipt !== null
                   ? "hidden"
                   : "opacity-100"
               }
@@ -107,7 +101,6 @@ export function NewRefund() {
               title="COMPROVANTE"
               onChange={(file => {
                 setReceiptFile(file)
-                handleFileChange()
               })}
             />
             {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
