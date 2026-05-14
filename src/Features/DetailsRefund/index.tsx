@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonContainer";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Dialog, DialogTrigger } from "../../components/dialog";
@@ -9,33 +9,26 @@ import { Text } from "../../components/Text/Text";
 import { DeleteDialog } from "../DeleteDialog";
 import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useRefund } from "./hooks/useRefund";
-import { ToastError } from "../../components/Toast";
 
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
-  const navigate = useNavigate()
   const { id } = useParams()
-  const { data, /*refetch,*/ isLoading, error } = useRefund(id)
+  const { data, isLoading, error } = useRefund(id)
 
   const refund = data
-
-  useEffect(() => {
-    if (error) {
-      { ToastError('Erro ao carregar solicitação') }
-      navigate("/")
-    }
-  }, [error, navigate])
 
   return (
     <div className="flex items-center justify-center">
       <CardContainer size="md">
         {isLoading ? (
           <p className="flex items-center justify-center">Carregando...</p> 
+        ) : error ? (
+          <p className="flex items-center justify-center">Erro ao carregar solicitação!</p> 
         ) : !refund ? (
-          undefined
+          <p className="flex items-center justify-center">Não foi possível identificar a solicitação!</p> 
         ) : (
           <>
             <header className="mb-10 gap-2 flex flex-col">
