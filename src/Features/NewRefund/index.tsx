@@ -13,11 +13,11 @@ import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../components/Toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { NumericFormat } from 'react-number-format';
 
 export function NewRefund() {
   const { register, handleSubmit, control, formState: { errors } } = useForm<RefundProps>()
   const [receipt, setReceiptFile] = useState<File | null>(null)
-  const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
@@ -40,8 +40,6 @@ export function NewRefund() {
   })
 
   const onSubmit: SubmitHandler<RefundProps> = (data: RefundProps) => {
-    setSubmitted(true)
-
     if (!receipt) {
       ToastError("Selecione um comprovante!")
       return
@@ -83,8 +81,34 @@ export function NewRefund() {
                 {errors.category && <span className="text-green-200 text-sm">{errors.category.message}</span>}
               </div>
 
-              <div>
-                <Input title="VALOR" placeholder="0,00" className="w-38" {...register("value", { valueAsNumber: true, required: "Obrigatório!" })} />
+              <div className="-mt-1.25">
+                <label className={`
+                  text-sm transition-colors duration-200 text-gray-200
+                  group-focus-within:text-green-100 text-[10px]
+                `}>
+                  VALOR
+                </label>
+                <Controller
+                  name="value"
+                  control={control}
+                  rules={{ required: "Obrigatório!" }}
+                  render={({ field: { onChange, value } }) => (
+                    <NumericFormat
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      prefix="R$ "
+                      placeholder="R$ 0,00"
+                      className="h-12 w-full rounded-lg p-4
+                      border-gray-300 border
+                      text-gray-100 placeholder:text-gray-200
+                      focus:border-green-100 focus:outline-none 
+                      focus:border-[1.5px] caret-green-100"
+                      value={value}
+                      onValueChange={(values) => onChange(values.floatValue)}
+                    />
+                  )}
+
+                />
                 {errors.value && <span className="text-green-200 text-sm">{errors.value.message}</span>}
               </div>
             </div>
@@ -104,7 +128,6 @@ export function NewRefund() {
               })}
 
             />
-            {submitted && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
 
             <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
           </div>
