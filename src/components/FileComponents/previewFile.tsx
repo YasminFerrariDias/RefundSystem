@@ -8,7 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 
 interface PreviewFileProps {
   text: string
-  className: string
+  className?: string
   target: string
   receiptId: string
 }
