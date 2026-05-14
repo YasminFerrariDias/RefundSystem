@@ -98,7 +98,7 @@ export function NewRefund() {
                       decimalSeparator=","
                       prefix="R$ "
                       placeholder="R$ 0,00"
-                      className="h-12 w-full rounded-lg p-4
+                      className="h-12.5 w-full rounded-lg p-4
                       border-gray-300 border
                       text-gray-100 placeholder:text-gray-200
                       focus:border-green-100 focus:outline-none 

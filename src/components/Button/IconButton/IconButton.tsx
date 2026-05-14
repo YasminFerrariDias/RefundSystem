@@ -10,14 +10,16 @@ interface IconButtonProps {
   iconColor?: "white" | "green100"
   className?: string
   disabled?: boolean
+  type?: string
 }
 
-export function IconButton({ as = "button", buttonColor, icon, iconColor, className, onClick, disabled, ...props }: IconButtonProps) {
+export function IconButton({ as = "button", buttonColor, icon, iconColor, className, onClick, type, disabled, ...props }: IconButtonProps) {
   return React.createElement(
     as,
     {
       onClick,
       disabled,
+      type,
       className: iconButtonVariant({ buttonColor, className }),
       ...props
     },

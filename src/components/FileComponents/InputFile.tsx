@@ -47,6 +47,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
             buttonColor="green100"
             className="cursor-pointer m-0"
             onClick={openFileSelector}
+            type="button"
           />
         </div>
       </div>
