@@ -1,7 +1,7 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode } from "react";
 import { RefundContext } from "./RefundContext";
 import { ApiRefunds } from "../../services/api";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface RefundProviderProps {
   children: ReactNode
@@ -16,25 +16,10 @@ export function RefundProvider({ children }: RefundProviderProps) {
     }
   })
 
-  const [searchResults, setSearchResults] = useState<null | typeof data>(null)
-
-  const { mutate: searchRefunds } = useMutation({
-    mutationFn: async (value: string) => {
-      const response = await ApiRefunds.getSearch(value)
-      return response.data.refunds.data
-    },
-    onSuccess: (results) => {
-      setSearchResults(results)
-    },
-    onError: () => {
-      setSearchResults([])
-    }
-  })
-
   const refunds = data ?? []
 
   return (
-    <RefundContext.Provider value={{ refunds, isLoading, error, refetch, searchResults, searchRefunds }}>
+    <RefundContext.Provider value={{ refunds, isLoading, error, refetch }}>
       {children}
     </RefundContext.Provider>
   )

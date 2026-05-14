@@ -4,12 +4,12 @@ import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
-import React, { useContext, useState } from "react";
-import { RefundContext } from "../../contexts/Refund/RefundContext";
+import React, { useState } from "react";
+import { useSearchRefund } from "./hooks/useSearchRefunds";
 
 export function RefundList() {
   const [value, setValue] = useState('')
-  const { searchResults, searchRefunds } = useContext(RefundContext)
+  const { searchResults, searchRefunds } = useSearchRefund()
 
   const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
