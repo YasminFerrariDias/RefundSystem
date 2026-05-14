@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-import { useEffect, useState } from "react";
 import { useToggle } from "./hooks/useToggle";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { categoryMapEnglish, categoryMapPortuguese } from "./types/categoryMap";
@@ -13,21 +11,13 @@ interface SelectProps {
   onChange?: (value: string) => void
 }
 
-export function Select({ title, className, disabled = false, value, onChange, readOnly, ...props }: SelectProps) {
+export function Select({ title, className, disabled = false, value, onChange, ...props }: SelectProps) {
   const { isOpen, close, toggle } = useToggle();
-  const [optionSelect, setOptionSelect] = useState(value || "Selecione")
 
   function handleSelected(name: string) {
-    setOptionSelect(name)
     onChange?.(name)
     close()
   }
-
-  useEffect(() => {
-    if (value) {
-      setOptionSelect(value)
-    }
-  }, [value])
 
   return (
     <div className={`flex flex-col gap-1 relative group ${className}`} {...props}>
@@ -48,10 +38,10 @@ export function Select({ title, className, disabled = false, value, onChange, re
           ${isOpen ? 'border-green-100 ring-1 ring-green-100' : ''}
           ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         `}
-        onClick={disabled || readOnly ? undefined : toggle}
+        onClick={disabled ? undefined : toggle}
         tabIndex={disabled ? -1 : 0}
       >
-        <span>{categoryMapPortuguese[categoryMapEnglish.indexOf(optionSelect)] || "Selecione"}</span>
+        <span>{categoryMapPortuguese[categoryMapEnglish.indexOf(value || "")] || "Selecione"}</span>
         <span className="flex items-center">{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </div>
 
@@ -66,7 +56,7 @@ export function Select({ title, className, disabled = false, value, onChange, re
           return (
             <div key={index} className={`
               p-1 cursor-pointer rounded 
-              ${optionSelect === englishValue
+              ${value === englishValue
                 ? 'font-semibold'
                 : 'font-normal'
               }`
