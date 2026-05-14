@@ -45,7 +45,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
             type="button"
             icon={FiUploadCloud}
             iconColor="white"
-            color="bg-green-100"
+            buttonColor="green100"
             className="cursor-pointer m-0"
             onClick={openFileSelector}
           />
