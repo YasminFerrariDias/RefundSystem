@@ -88,7 +88,7 @@ export function NewRefund() {
                 {errors.value && <span className="text-green-200 text-sm">{errors.value.message}</span>}
               </div>
             </div>
-
+                  
             <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG"
               className={
                 receipt !== null
@@ -102,9 +102,10 @@ export function NewRefund() {
               onChange={(file => {
                 setReceiptFile(file)
               })}
+              
             />
-            {submitted && !receipt && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
-
+            {submitted && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
+            
             <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
           </div>
         </CardContainer>
