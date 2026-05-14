@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Request } from "../../../components/Request"
 import { Text } from "../../../components/Text/Text";
 import { IconButton } from "../../../components/Button/IconButton/IconButton";
@@ -7,31 +7,18 @@ import { MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RefundContext } from "../../../contexts/Refund/RefundContext";
 import type { RefundType } from "../../../types/refundType";
+import { usePagination } from "../hooks/usePagination";
 
 export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
   const navigate = useNavigate()
-  const [currentPage, setCurrentPage] = useState(1)
   const { refunds, isLoading } = useContext(RefundContext)
-
   const dataToShow = searchResults !== null ? searchResults : refunds
+
+  const { currentItems, totalPages, currentPage, goToNextPage, goToPrevPage, } = usePagination(dataToShow)
+
 
   if (isLoading) {
     return <p>carregando...</p>
-  }
-
-  const itemsPerPage = 6
-  const start = (currentPage - 1) * itemsPerPage
-  const end = start + itemsPerPage
-  const page = dataToShow.slice(start, end);
-  const numberOfPages = Math.ceil(dataToShow.length / itemsPerPage)
-
-  
-  const nextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
-
-  const previousPage = () => {
-    setCurrentPage(currentPage - 1)
   }
 
   return (
@@ -42,7 +29,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
             Ainda não existe nenhuma solicitação de reembolso!
           </Text>
         ) : (
-          page.map((refund) => (
+          currentItems.map((refund) => (
             <Request
               key={refund.id}
               id={refund.id}
@@ -60,14 +47,14 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
       <div className="flex justify-center gap-3 items-center fixed bottom-39 left-0 right-0">
         <IconButton
           disabled={currentPage === 1 ? true : false}
-          onClick={previousPage}
+          onClick={goToPrevPage}
           icon={GrFormPrevious}
           iconColor="white"
         />
-        <Text size="md" textColor="gray200">{numberOfPages === 0 ? "0/0" : `${currentPage}/${numberOfPages}`}</Text>
+        <Text size="md" textColor="gray200">{`${currentPage}/${totalPages}`}</Text>
         <IconButton
-          disabled={currentPage === numberOfPages || currentPage == 0 ? true : false}
-          onClick={nextPage}
+          disabled={currentPage === totalPages || currentPage == 0 ? true : false}
+          onClick={goToNextPage}
           icon={MdNavigateNext}
           iconColor="white"
         />
