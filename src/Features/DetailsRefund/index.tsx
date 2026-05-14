@@ -16,9 +16,7 @@ import { useRefund } from "./hooks/useRefund";
 export function DetailsRefund() {
   const [open, setOpen] = useState(false)
   const { id } = useParams()
-  const { data, isLoading, error } = useRefund(id)
-
-  const refund = data
+  const { data: refund, isLoading, error } = useRefund(id)
 
   return (
     <div className="flex items-center justify-center">
@@ -41,7 +39,9 @@ export function DetailsRefund() {
                 <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
                 <Input title="VALOR" value={refund.value} className="w-38" readOnly />
               </div>
-              <PreviewFile text="Abrir comprovante" receiptId={refund.receipt?.id} target="_blank" />
+              {refund && refund.receipt && (
+                <PreviewFile text="Abrir comprovante" receiptId={refund.receipt.id} target="_blank" />
+              )}
 
               <div className="flex gap-2 m-0">
                 <Link to='/'>

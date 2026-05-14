@@ -4,10 +4,10 @@ import type { RefundType } from "../../../types/refundType"
 
 export const useRefund = (id: string | undefined) => {
   const { data, isLoading, error, refetch } = useQuery<RefundType>({
-    enabled: !!id,
     queryKey: ['refund', id],
     queryFn: async () => {
-      const response = await ApiRefunds.getOne(id!)
+      if (!id) return null
+      const response = await ApiRefunds.getOne(id)
       return response.data.refund
     }
   })

@@ -16,7 +16,6 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
 
   const { currentItems, totalPages, currentPage, goToNextPage, goToPrevPage, } = usePagination(dataToShow)
 
-
   if (isLoading) {
     return <p>carregando...</p>
   }
@@ -52,7 +51,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
           iconColor="white"
         />
         <Text size="md" textColor="gray200">{`${currentPage}/${totalPages}`}</Text>
-        <IconButton
+        <IconButton 
           disabled={currentPage === totalPages || currentPage == 0 ? true : false}
           onClick={goToNextPage}
           icon={MdNavigateNext}
