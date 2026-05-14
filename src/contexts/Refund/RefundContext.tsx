@@ -1,12 +1,12 @@
 import { createContext } from "react";
-import type { RefundType } from "../../types/refund";
+import type { Refund } from "../../types/refund";
 
 interface RefundContextProps {
-  refunds: RefundType[] // pega a lista 
+  refunds: Refund[] // pega a lista 
   isLoading: boolean
   error: Error | null
   refetch: () => void
-  searchResults: RefundType[] | null
+  searchResults: Refund[] | null
   searchRefunds: (value: string) => void
 }
 

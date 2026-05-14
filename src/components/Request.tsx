@@ -1,10 +1,10 @@
 import { PiForkKnifeFill, PiBuildingFill, PiCarFill, PiWrenchFill, PiPackageFill } from "react-icons/pi";
-import type { RefundType } from "../types/refund";
+import type { RefundProps } from "../types/refundComponent";
 import { Icon } from "./Icon/Icon";
 import { Text } from "./Text/Text";
 import { categoryTranslation } from "../Features/SelectCategory/types/categoryMap";
 
-export function Request({ id, title, category, value, onClick, className }: RefundType) {
+export function Request({ id, title, category, value, onClick, className }: RefundProps) {
 
   let IconComponent;
   if (category === "food") IconComponent = PiForkKnifeFill;

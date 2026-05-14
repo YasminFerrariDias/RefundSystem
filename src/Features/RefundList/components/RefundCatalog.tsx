@@ -6,10 +6,10 @@ import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RefundContext } from "../../../contexts/Refund/RefundContext";
-import type { RefundType } from "../../../types/refund";
+import type { RefundProps } from "../../../types/refundComponent";
 import { usePagination } from "../hooks/usePagination";
 
-export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
+export function RefundCatalog({ searchResults }: { searchResults: RefundProps[] | null }) {
   const navigate = useNavigate()
   const { refunds, isLoading } = useContext(RefundContext)
   const dataToShow = searchResults !== null ? searchResults : refunds
@@ -34,7 +34,6 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
               id={refund.id}
               title={refund.title}
               value={refund.value}
-              icon={refund.icon}
               category={refund.category}
               className={`hover:bg-gray-400`}
               onClick={() => navigate(`/DetailsRefund/${refund.id}`)}

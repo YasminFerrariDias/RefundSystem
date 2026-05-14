@@ -7,7 +7,7 @@ import { Input } from "../../components/Input";
 import { Select } from "../SelectCategory/Select";
 import { Text } from "../../components/Text/Text";
 import { ApiReceipts, ApiRefunds } from "../../services/api";
-import type { RefundType } from "../../types/refund";
+import type { RefundProps } from "../../types/refundComponent";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
@@ -15,14 +15,14 @@ import { ToastError, ToastSuccess } from "../../components/Toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function NewRefund() {
-  const { register, handleSubmit, control, formState: { errors } } = useForm<RefundType>()
+  const { register, handleSubmit, control, formState: { errors } } = useForm<RefundProps>()
   const [receipt, setReceiptFile] = useState<File | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const { mutate } = useMutation({
-    mutationFn: async (formData: RefundType) => {
+    mutationFn: async (formData: RefundProps) => {
       const uploadResponse = await ApiReceipts.upload(receipt!)
       const receipID = uploadResponse.data.receipt.id
       const refundDatas = { ...formData, receipt: receipID }
@@ -39,7 +39,7 @@ export function NewRefund() {
     }
   })
 
-  const onSubmit: SubmitHandler<RefundType> = (data: RefundType) => {
+  const onSubmit: SubmitHandler<RefundProps> = (data: RefundProps) => {
     setSubmitted(true)
 
     if (!receipt) {
