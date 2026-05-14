@@ -12,8 +12,8 @@ import { usePagination } from "../hooks/usePagination";
 export function RefundCatalog({ searchResults }: { searchResults: RefundProps[] | null }) {
   const navigate = useNavigate()
   const { refunds, isLoading } = useContext(RefundContext)
-  const dataToShow = searchResults !== null ? searchResults : refunds
 
+  const dataToShow = searchResults ?? refunds
   const { currentItems, totalPages, currentPage, goToNextPage, goToPrevPage, } = usePagination(dataToShow)
 
   if (isLoading) {
@@ -23,7 +23,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundProps[] 
   return (
     <>
       <div className="flex flex-col">
-        {dataToShow.length === 0 ? (
+        {!dataToShow || dataToShow.length === 0 ? (
           <Text textColor="green100" className=" flex justify-center">
             Ainda não existe nenhuma solicitação de reembolso!
           </Text>
