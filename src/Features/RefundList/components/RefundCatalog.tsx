@@ -11,20 +11,21 @@ import type { RefundType } from "../../../types/refundType";
 export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
   const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState(1)
-const { refunds } = useContext(RefundContext)
-console.log("RefundCatalog renderizou, refunds:", refunds)  // ← veja se muda
+  const { refunds, isLoading } = useContext(RefundContext)
 
   const dataToShow = searchResults !== null ? searchResults : refunds
-  if (!dataToShow) {
-    return<p>carregando...</p>
+
+  if (isLoading) {
+    return <p>carregando...</p>
   }
-  
+
   const itemsPerPage = 6
   const start = (currentPage - 1) * itemsPerPage
   const end = start + itemsPerPage
   const page = dataToShow.slice(start, end);
   const numberOfPages = Math.ceil(dataToShow.length / itemsPerPage)
 
+  
   const nextPage = () => {
     setCurrentPage(currentPage + 1)
   }
