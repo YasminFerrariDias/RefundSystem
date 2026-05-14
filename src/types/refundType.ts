@@ -5,7 +5,7 @@ export interface RefundType {
   title: string
   category: string
   value: number
-  receipt?: {id: string, path: string} | null
+  receipt?: string | null
   icon: IconType
   onClick?: () => void 
   className?: string 

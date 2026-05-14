@@ -1,12 +1,13 @@
 import axios from "axios"
+import type { CreateRefundData } from "./CreateRefundData"
 
-const api = axios.create({ baseURL:"http://localhost:3333"})
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL})
 
 export const ApiRefunds = {
   getAll: () => api.get("/refunds"),
   getOne: (id: string) => api.get(`/refunds/${id}`),  
   getSearch: (q: string, page: number = 1) => api.get(`/refunds?q=${q}&page=${page}`),  
-  postCreate: (data: unknown) => api.post("/refunds", data),
+  postCreate: (data: CreateRefundData) => api.post("/refunds", data),
   deleteRefund: (id: string) => api.delete(`/refunds/${id}`),
 }
 
