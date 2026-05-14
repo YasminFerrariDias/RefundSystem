@@ -1,6 +1,6 @@
 import { ApiRefunds } from "../../../services/api"
 import { useQuery } from "@tanstack/react-query"
-import type { RefundType } from "../../../types/refundType"
+import type { RefundType } from "../../../types/refund"
 
 export const useRefund = (id: string | undefined) => {
   const { data, isLoading, error, refetch } = useQuery<RefundType>({

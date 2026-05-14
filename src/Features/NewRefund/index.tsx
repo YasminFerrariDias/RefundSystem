@@ -7,12 +7,12 @@ import { Input } from "../../components/Input";
 import { Select } from "../SelectCategory/Select";
 import { Text } from "../../components/Text/Text";
 import { ApiReceipts, ApiRefunds } from "../../services/api";
-import type { RefundType } from "../../types/refundType";
+import type { RefundType } from "../../types/refund";
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../components/Toast";
-import { useMutation, useQueryClient  } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function NewRefund() {
   const { register, handleSubmit, control, formState: { errors } } = useForm<RefundType>()
@@ -88,7 +88,7 @@ export function NewRefund() {
                 {errors.value && <span className="text-green-200 text-sm">{errors.value.message}</span>}
               </div>
             </div>
-                  
+
             <Alert textSize="2 MB" textFormat="PDF, PNG e JPEG"
               className={
                 receipt !== null
@@ -102,10 +102,10 @@ export function NewRefund() {
               onChange={(file => {
                 setReceiptFile(file)
               })}
-              
+
             />
             {submitted && <span className="text-green-200 text-sm -mt-5">Comprovante obrigatório</span>}
-            
+
             <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
           </div>
         </CardContainer>

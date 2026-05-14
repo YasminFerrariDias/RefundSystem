@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import type { RefundType } from "../../../types/refundType";
+import type { RefundType } from "../../../types/refund";
 
 export const usePagination = (list: RefundType[]) => {
   const [currentPage, setCurrentPage] = useState(1);

@@ -6,7 +6,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RefundContext } from "../../../contexts/Refund/RefundContext";
-import type { RefundType } from "../../../types/refundType";
+import type { RefundType } from "../../../types/refund";
 import { usePagination } from "../hooks/usePagination";
 
 export function RefundCatalog({ searchResults }: { searchResults: RefundType[] | null }) {
@@ -51,7 +51,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundType[] |
           iconColor="white"
         />
         <Text size="md" textColor="gray200">{`${currentPage}/${totalPages}`}</Text>
-        <IconButton 
+        <IconButton
           disabled={currentPage === totalPages || currentPage == 0 ? true : false}
           onClick={goToNextPage}
           icon={MdNavigateNext}

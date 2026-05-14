@@ -17,7 +17,5 @@ export const ApiReceipts = {
     formData.append("receiptFile", file)
     return api.post("/receipts", formData)
   },
-  getOne: (id: string) => api.get(`/receipts/${id}`),  
-  delete: (id: string) => api.delete(`/receipts/${id}`), 
   download: (id: string) => api.get(`/receipts/download/${id}`)
 }
