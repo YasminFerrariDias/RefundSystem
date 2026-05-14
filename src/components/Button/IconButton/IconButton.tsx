@@ -1,23 +1,21 @@
-import type { VariantProps } from "tailwind-variants";
 import { iconButtonVariant } from "./IconButton.variants";
 import React from "react";
 import { Icon } from "../../Icon/Icon";
 
-interface IconButtonProps
-  extends VariantProps<typeof iconButtonVariant>,
-  React.ComponentProps<"button"> {
+interface IconButtonProps {
   as?: keyof React.JSX.IntrinsicElements
-
-  onChange?: () => Event
+  buttonColor: "green100" | "transparent" | "green200" | undefined
+  onClick?: () => void
   icon: React.ElementType
   iconColor?: "white" | "green100"
+  className: string
 }
 
-export function IconButton({ as = "button", buttonColor, icon, iconColor, className, onChange, ...props }: IconButtonProps) {
+export function IconButton({ as = "button", buttonColor, icon, iconColor, className, onClick, ...props }: IconButtonProps) {
   return React.createElement(
     as,
     {
-      onChange,
+      onClick,
       className: iconButtonVariant({ buttonColor, className }),
       ...props
     },

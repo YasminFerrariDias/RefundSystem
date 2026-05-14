@@ -42,7 +42,6 @@ export function InputFile({ title, onChange }: InputFileProps) {
         <div className="w-full h-12 flex items-center justify-between pl-4">
           <Text className="text-gray-100" size="mdLine" textColor="gray200">{nameFile}</Text>
           <IconButton
-            type="button"
             icon={FiUploadCloud}
             iconColor="white"
             buttonColor="green100"
