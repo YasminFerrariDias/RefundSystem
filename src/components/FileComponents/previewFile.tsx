@@ -3,22 +3,22 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 import cn from "classnames";
 import { ApiReceipts } from "../../services/api";
-import { ToastError } from "../Toast";
+import { ToastError, ToastInfo } from "../Toast";
 import { useMutation } from "@tanstack/react-query";
 
 interface PreviewFileProps {
   text: string
-  className?: string
-  target?: string
-  receiptId?: string
+  className: string
+  target: string
+  receiptId: string
 }
 
 export function PreviewFile({ text, receiptId, className, target, ...props }: PreviewFileProps) {
-
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (id: string) => ApiReceipts.download(id),
     onSuccess: (response) => {
-      const signedUrl = `http://localhost:3333${response.data.url}`
+      ToastInfo('Redirecionando...')
+      const signedUrl = `${import.meta.env.VITE_API_URL}${response.data.url}`
       window.open(signedUrl, '_blank')
     },
     onError: () => {
@@ -33,7 +33,7 @@ export function PreviewFile({ text, receiptId, className, target, ...props }: Pr
       {...props}>
       <a onClick={() => mutate(receiptId!)} className="flex" target={target}>
         <Icon icon={FaRegFile} iconColor="green100" size="sm" />
-        <Text size="md" textColor="green100" decoration="semibold">{text}</Text>
+        <Text size="md" textColor="green100" decoration="semibold" style={{pointerEvents: isPending ? 'none' : 'auto'}}>{text}</Text>
       </a>
     </div>
   )
