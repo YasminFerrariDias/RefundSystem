@@ -4,6 +4,7 @@ import { ApiRefunds } from "../../services/api";
 import { useQuery } from "@tanstack/react-query";
 import { ToastError } from "../../components/Toast";
 import { useMutation } from "@tanstack/react-query";
+import type { Refund } from "../../types/refund";
 
 interface RefundProviderProps {
   children: ReactNode
@@ -18,7 +19,7 @@ export function RefundProvider({ children }: RefundProviderProps) {
     }
   })
 
-  const [searchResults, setSearchResults] = useState(null)
+  const [searchResults, setSearchResults] = useState<Refund[] | null>(null)
 
   const { mutate } = useMutation({
     mutationFn: async (value: string) => await ApiRefunds.getSearch(value),
