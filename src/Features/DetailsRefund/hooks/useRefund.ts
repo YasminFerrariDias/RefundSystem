@@ -4,6 +4,7 @@ import type { Refund } from "../../../types/refund"
 
 export const useRefund = (id: string | undefined) => {
   const { data, isLoading, error, refetch } = useQuery<Refund>({
+    enabled: !!id,
     queryKey: ['refund', id],
     queryFn: async () => {
       if (!id) return null
