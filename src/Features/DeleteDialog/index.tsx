@@ -31,7 +31,7 @@ export function DeleteDialog({ id }: DeleteDialogProps) {
         title="Excluir solicitação"
         text="Tem certeza que deseja excluir essa solicitação? Essa ação é irrervesível."
         className="mb-6" />
-      <DialogFooter className="flex gap-1 ">
+      <DialogFooter className="flex gap-1">
         <DialogClose asChild>
           <ButtonContainer
             text="Cancelar"

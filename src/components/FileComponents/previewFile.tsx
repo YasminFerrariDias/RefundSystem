@@ -14,6 +14,7 @@ interface PreviewFileProps {
 }
 
 export function PreviewFile({ text, receiptId, className, target, ...props }: PreviewFileProps) {
+  
   const { mutate, isPending } = useMutation({
     mutationFn: (id: string) => ApiReceipts.download(id),
     onSuccess: (response) => {
@@ -24,11 +25,12 @@ export function PreviewFile({ text, receiptId, className, target, ...props }: Pr
     onError: () => {
       ToastError('Erro ao visualizar comprovante!')
     }
+    
   })
 
   return (
     <div className={cn(`
-      flex gap-1 justify-center flex-row
+        flex gap-1 justify-center flex-row
       `, className)}
       {...props}>
       <a onClick={() => mutate(receiptId!)} className="flex" target={target}>

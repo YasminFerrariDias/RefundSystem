@@ -7,8 +7,7 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const queryClient = new QueryClient() as any;
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>

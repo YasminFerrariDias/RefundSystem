@@ -2,6 +2,7 @@ import { FiUploadCloud } from "react-icons/fi";
 import { IconButton } from "../Button/IconButton/IconButton";
 import { Text } from "../Text/Text";
 import { useRef, useState } from "react";
+import { ToastError } from "../Toast";
 
 interface InputFileProps {
   title: string;
@@ -13,6 +14,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // faz o navegador abrir a janela de seleção de arquivos
   const openFileSelector = () => {
     fileInputRef.current?.click()
   }
@@ -21,7 +23,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
     <div>
       <input type="file" ref={fileInputRef} className="hidden" accept=".pdf, .jpg, .png"
         onChange={(e) => {
-          const file = e.target.files?.[0];
+          const file = e.target.files?.[0]; // pega o 1° arquivo
           if (file) {
             const size = file.size
             const maxSize = 2 * 1024 * 1024
@@ -30,6 +32,7 @@ export function InputFile({ title, onChange }: InputFileProps) {
               onChange?.(file)  
             } else {
               setNameFile("Nome do arquivo.pdf")
+              ToastError("Tamanho do arquivo excedido!")
             }
           }
         }}
