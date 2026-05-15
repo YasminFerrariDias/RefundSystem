@@ -11,6 +11,7 @@ interface InputFileProps {
 
 export function InputFile({ title, onChange }: InputFileProps) {
   const [nameFile, setNameFile] = useState("Nome do arquivo.pdf")
+  const [isUploading, setIsUploading] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -24,17 +25,24 @@ export function InputFile({ title, onChange }: InputFileProps) {
       <input type="file" ref={fileInputRef} className="hidden" accept=".pdf, .jpg, .png"
         onChange={(e) => {
           const file = e.target.files?.[0]; // pega o 1° arquivo
-          if (file) {
-            const size = file.size
-            const maxSize = 2 * 1024 * 1024
-            if (size <= maxSize) {
-              setNameFile(file.name)
-              onChange?.(file)  
-            } else {
-              setNameFile("Nome do arquivo.pdf")
-              ToastError("Tamanho do arquivo excedido!")
-            }
+          setIsUploading(true)
+
+          if (!file) {
+            setIsUploading(false);
+            return;
           }
+
+          const maxSize = 2 * 1024 * 1024
+
+          if (file.size <= maxSize) {
+            setNameFile(file.name)
+            onChange?.(file)
+          } else {
+            setNameFile("Nome do arquivo.pdf")
+            ToastError("Tamanho do arquivo excedido!")
+          }
+
+          setIsUploading(false)
         }}
       />
       <Text size="xs" textColor="gray200">{title}</Text>
@@ -50,11 +58,11 @@ export function InputFile({ title, onChange }: InputFileProps) {
             buttonColor="green100"
             className="cursor-pointer m-0"
             onClick={openFileSelector}
+            disabled={isUploading}
             type="button"
           />
         </div>
       </div>
     </div>
-
   )
 }

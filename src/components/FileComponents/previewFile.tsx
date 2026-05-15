@@ -32,7 +32,7 @@ export function PreviewFile({ text, receiptId, className, target, ...props }: Pr
         flex gap-1 justify-center flex-row
       `, className)}
       {...props}>
-      <a onClick={() => mutate(receiptId!)} className="flex" target={target} href="#">
+      <a onClick={() => mutate(receiptId)} className="flex" target={target} >
         <Icon icon={FaRegFile} iconColor="green100" size="sm" />
         <Text size="md" textColor="green100" decoration="semibold" style={{pointerEvents: isPending ? 'none' : 'auto'}}>{text}</Text>
       </a>

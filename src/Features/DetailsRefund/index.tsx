@@ -36,7 +36,7 @@ export function DetailsRefund() {
             <div className="flex flex-col gap-6">
               <Input value={refund.title} title="NOME DA SOLICITAÇÃO" readOnly />
               <div className="flex gap-2">
-                <Select title="CATEGORIA" className="w-full" value={refund.category} readOnly />
+                <Select title="CATEGORIA" className="w-full" value={refund.category} />
                 <Input title="VALOR" value={refund.value} className="w-38" readOnly />
               </div>
               {refund && refund.receipt && (
@@ -62,5 +62,3 @@ export function DetailsRefund() {
     </div>
   )
 }
-
-
