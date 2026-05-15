@@ -3,7 +3,7 @@ import { ButtonContainer } from "../src/components/Button/ButtonContainer/Button
 import { DialogBody, DialogContent, DialogFooter, DialogHeader } from "../src/components/dialog";
 import { InputFile } from "../src/components/FileComponents/InputFile";
 import { Input } from "../src/components/Input";
-import { Select } from "../src/components/Select/Select";
+import { Select } from "../src/Features/SelectCategory/Select";
 
 export function RefundNewDialog() {
   return (
