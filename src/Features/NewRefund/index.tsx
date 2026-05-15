@@ -32,7 +32,7 @@ export function NewRefund() {
     onSuccess: () => {
       ToastSuccess('Cadastrado com sucesso!')
       queryClient.invalidateQueries({ queryKey: ['refunds'] })
-      navigate("/")
+      navigate("/RequestSent")
     },
     onError: () => {
       ToastError("Erro ao processar o comprovante!")
