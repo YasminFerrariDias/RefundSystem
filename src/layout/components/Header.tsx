@@ -6,7 +6,7 @@ import { ButtonContainer } from "../../components/Button/ButtonContainer/ButtonC
 import { Link } from "react-router-dom";
 export function Header() {
   return (
-    <div className="bg-gray-400 w-full p-10 pl-35 pr-35 flex justify-between">
+    <div className="bg-gray-400 w-full container mx-auto p-10 pb-15 flex justify-between">
 
       <Link to="/">
         <div className="flex gap-1 items-center">
@@ -20,7 +20,7 @@ export function Header() {
           <NavLink text="Solicitações de reembolso" />
         </Link>
 
-        <Link to="/NewRefund">
+        <Link to="/new-refund">
           <ButtonContainer text="Nova Solicitação" textColor="white" decoration="bold" />
         </Link>
       </div>

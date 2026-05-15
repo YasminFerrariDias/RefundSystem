@@ -36,7 +36,7 @@ export function RefundCatalog({ searchResults }: { searchResults: RefundProps[] 
               value={refund.value}
               category={refund.category}
               className={`hover:bg-gray-400`}
-              onClick={() => navigate(`/DetailsRefund/${refund.id}`)}
+              onClick={() => navigate(`/details-refund/${refund.id}`)}
             />
           ))
         )}

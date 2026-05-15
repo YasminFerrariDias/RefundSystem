@@ -20,7 +20,7 @@ export function RequestSent() {
           <Link to="/">
             <ButtonContainer text="Solicitações de reembolso" size="full" className="w-full" textColor="white" buttonColor="green200" />
           </Link>
-          <Link to="/NewRefund">
+          <Link to="/new-refund">
             <ButtonContainer text="Nova solicitação" size="full" className="w-full" textColor="white" />
           </Link>
         </div>

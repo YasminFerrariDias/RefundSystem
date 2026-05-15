@@ -1,3 +1,3 @@
-import { QueryClient } from './../../node_modules/@tanstack/query-core/src/queryClient';
+import { QueryClient } from '@tanstack/query-core'
 
 export const queryClient = new QueryClient()

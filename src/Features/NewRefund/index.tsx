@@ -21,7 +21,7 @@ export function NewRefund() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (formData: RefundProps) => {
       const uploadResponse = await ApiReceipts.upload(receipt!)
       const receipID = uploadResponse.data.receipt.id
@@ -32,7 +32,7 @@ export function NewRefund() {
     onSuccess: () => {
       ToastSuccess('Cadastrado com sucesso!')
       queryClient.invalidateQueries({ queryKey: ['refunds'] })
-      navigate("/RequestSent")
+      navigate("/request-sent")
     },
     onError: () => {
       ToastError("Erro ao processar o comprovante!")
@@ -126,10 +126,15 @@ export function NewRefund() {
               onChange={(file => {
                 setReceiptFile(file)
               })}
-
             />
 
-            <ButtonContainer text="Enviar" size="full" className="w-full" textColor="white" type="submit" />
+            <ButtonContainer
+              text="Enviar"
+              size="full"
+              className={`w-full ${isPending ? 'opacity-50 pointer-events-none' : ''}`}
+              textColor="white"
+              type="submit"
+            />
           </div>
         </CardContainer>
       </div>

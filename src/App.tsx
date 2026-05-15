@@ -13,9 +13,9 @@ export function App() {
         <Toast />
         <Routes>
           <Route path='/' element={<RefundList />} />
-          <Route path='/NewRefund' element={<NewRefund />} />
-          <Route path='/RequestSent' element={<RequestSent />} />
-          <Route path='/DetailsRefund/:id' element={<DetailsRefund />} />
+          <Route path='/new-refund' element={<NewRefund />} />
+          <Route path='/request-sent' element={<RequestSent />} />
+          <Route path='/details-refund/:id' element={<DetailsRefund />} />
         </Routes>
       </div>
     </AppProvider>

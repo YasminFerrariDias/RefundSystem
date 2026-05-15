@@ -7,7 +7,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="bg-gray-400 h-full w-full">
+    <div className="bg-gray-400 min-h-screen w-full">
       <Header />
       {children}
     </div>
