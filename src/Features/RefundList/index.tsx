@@ -1,19 +1,11 @@
-import { CiSearch } from "react-icons/ci";
-import { IconButton } from "../../components/Button/IconButton/IconButton";
 import { CardContainer } from "../../components/CardContainer/CardContainer";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text/Text";
 import { RefundCatalog } from "../../Features/RefundList/components/RefundCatalog";
-import React, { useState } from "react";
 import { useSearchRefund } from "./hooks/useSearchRefunds";
 
 export function RefundList() {
-  const [value, setValue] = useState('')
-  const { searchResults, searchRefunds } = useSearchRefund()
-
-  const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
+  const { searchResults, searchTerm, setSearchTerm } = useSearchRefund()
 
   return (
     <CardContainer>
@@ -22,19 +14,12 @@ export function RefundList() {
         <div className="flex items-center m-0 p-0 gap-1.5">
           <div className="flex-1">
             <Input
-              value={value}
-              onChange={handleValue}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Pesquisar pelo nome"
             />
           </div>
 
-          <div>
-            <IconButton
-              icon={CiSearch}
-              iconColor="white"
-              onClick={() => searchRefunds(value)}
-            />
-          </div>
         </div>
         <hr className="text-gray-400" />
         <div>
