@@ -1,21 +1,15 @@
 import { useState } from "react"
-import type { Refund } from "../../../types/refund"
 import { ApiRefunds } from "../../../services/api"
-import { useMutation } from "@tanstack/react-query"
-import { ToastError } from "../../../components/Toast"
+import { useQuery } from "@tanstack/react-query"
 
 export const useSearchRefund = () => {
-  const [searchResults, setSearchResults] = useState<Refund[] | null>(null)
+  const [searchTerm, setSearchTerm] = useState("")
 
-  const { mutate } = useMutation({
-    mutationFn: async (value: string) => await ApiRefunds.getSearch(value),
-    onSuccess: (search) => {
-      setSearchResults(search.data.refunds.data)
-    },
-    onError: () => {
-      ToastError('Erro ao executar a pesquisa!')
-    }
+  const { data: searchResults, isLoading } = useQuery({
+    queryKey: ['refunds-search', searchTerm],
+    queryFn: () => ApiRefunds.getSearch(searchTerm),
+    enabled: searchTerm.length > 0
   })
 
-  return {searchResults, searchRefunds: mutate}
+  return { searchTerm, setSearchTerm, searchResults, isLoading }
 }

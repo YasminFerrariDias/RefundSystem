@@ -7,7 +7,6 @@ interface SelectProps {
   disabled?: boolean
   className?: string
   value?: string
-  readOnly?: boolean
   onChange?: (value: string) => void
 }
 
