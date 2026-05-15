@@ -6,9 +6,9 @@ interface AppProviderProps {
   children: ReactNode
 }
 
-export function AppProvider({ children }: AppProviderProps) {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
+export function AppProvider({ children }: AppProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RefundProvider>
